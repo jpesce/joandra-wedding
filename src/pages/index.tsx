@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
+import EventDetails from '../components/EventDetails';
 
 const Index: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Index: NextPage = () => {
 
       <Navigation />
       <Hero />
+      <EventDetails />
     </>
   );
 };
