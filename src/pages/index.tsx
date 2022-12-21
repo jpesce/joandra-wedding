@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import EventDetails from '../components/EventDetails';
 import Greeting from '../components/Greeting';
+import FoodAndDrinks from '../components/FoodAndDrinks';
 
 const Index: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Index: NextPage = () => {
       <Hero />
       <EventDetails />
       <Greeting />
+      <FoodAndDrinks />
     </>
   );
 };
