@@ -32,10 +32,10 @@ const Navigation: FC = () => {
         <Logo />
       </a>
       <nav className={`fixed top-14 right-20 space-x-8 ${textClass} z-40`}>
-        <a href="#">A festa</a>
-        <a href="#">Lista de presentes</a>
-        <a href="#">Confirmar presença</a>
-        <a href="#">Perguntas frequentes</a>
+        <a href="#a-festa">A festa</a>
+        <a href="#lista-de-presentes">Lista de presentes</a>
+        <a href="#confirmar-presenca">Confirmar presença</a>
+        <a href="#perguntas-frequentes">Perguntas frequentes</a>
       </nav>
     </>
   );

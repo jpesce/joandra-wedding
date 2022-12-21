@@ -18,10 +18,14 @@ const Index: NextPage = () => {
 
       <Navigation />
       <Hero />
-      <EventDetails />
+      <section id="a-festa">
+        <EventDetails />
+      </section>
       <Greeting />
       <FoodAndDrinks />
-      <FAQ />
+      <section id="perguntas-frequentes">
+        <FAQ />
+      </section>
     </>
   );
 };

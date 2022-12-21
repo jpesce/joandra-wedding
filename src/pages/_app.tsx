@@ -1,5 +1,6 @@
 import { type AppType } from "next/dist/shared/lib/utils";
-
+import { polyfill as smoothScrollPolyfill } from 'smoothscroll-polyfill';
+import { useEffect } from 'react';
 import "../styles/globals.css";
 import localFont from "@next/font/local";
 const serif = localFont({
@@ -29,6 +30,10 @@ const condensed = localFont({
 });
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  useEffect(() => {
+    smoothScrollPolyfill();
+  },[])
+
   return (
     <div className={`${serif.variable} ${condensed.variable}`}>
       <Component {...pageProps} />
