@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import EventDetails from '../components/EventDetails';
+import Greeting from '../components/Greeting';
 
 const Index: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Index: NextPage = () => {
       <Navigation />
       <Hero />
       <EventDetails />
+      <Greeting />
     </>
   );
 };
