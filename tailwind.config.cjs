@@ -16,7 +16,26 @@ module.exports = {
         serif: ['var(--font-serif)', ...fontFamily.serif],
         condensed: ['var(--font-condensed)', ...fontFamily.sans]
       },
+      keyframes: {
+        wiggle: {
+          '0%, 50%': { transform: 'rotate(0)' },
+          '25%': { transform: 'rotate(-4deg)'},
+          '75%': { transform: 'rotate(4deg)' },
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 0.4s ease-in-out 2',
+      }
+    },
   },
   plugins: [
+    // Add selection variant from ::selection pseudo-element
+    plugin(({ addVariant, e }) => {
+      addVariant('selection', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`selection${separator}${className}`)} ::selection`;
+        })
+      })
+    })
   ],
 };
