@@ -10,8 +10,8 @@ const Hero: FC = () => {
           <span className="italic">Chandra & João</span> vão finalmente fazer dessa união uma festa.
         </div>
         <div className="space-x-4">
-          <Button label="Escolher presente"/>
-          <Button label="Confirmar presença"/>
+          <Button label="Escolher presente" href="#lista-de-presentes"/>
+          <Button label="Confirmar presença" href="#confirmar-presenca"/>
         </div>
       </div>
     </div>
