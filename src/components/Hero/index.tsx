@@ -1,7 +1,5 @@
 import type { FC } from "react";
 
-import Button from '../Button';
-
 const Hero: FC = () => {
   return (
     <div className="h-screen bg-joanGreen-500 min-h-[32rem] relative selection:bg-white selection:text-joanGreen-500">
@@ -10,8 +8,8 @@ const Hero: FC = () => {
           <span className="italic">Chandra & João</span> vão finalmente fazer dessa união uma festa.
         </div>
         <div className="space-x-4">
-          <Button label="Escolher presente" href="#lista-de-presentes"/>
-          <Button label="Confirmar presença" href="#confirmar-presenca"/>
+          <a href="#lista-de-presentes" className="min-h-[2.5rem] px-5 transition select-none text-white border border-white rounded-full hover:text-joanGreen-500 hover:bg-white inline-flex items-center">Escolher presente</a>
+          <a href="#confirmar-presenca" className="min-h-[2.5rem] px-5 transition select-none text-white border border-white rounded-full hover:text-joanGreen-500 hover:bg-white inline-flex items-center">Confirmar presença</a>
         </div>
       </div>
     </div>
