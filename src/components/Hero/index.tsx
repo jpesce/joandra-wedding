@@ -1,6 +1,4 @@
-import type { FC } from "react";
-
-const Hero: FC = () => {
+const Hero = (): JSX.Element => {
   return (
     <div className="h-screen bg-joanGreen-500 min-h-[32rem] relative selection:bg-white selection:text-joanGreen-500">
       <div className="absolute bottom-16 left-12">

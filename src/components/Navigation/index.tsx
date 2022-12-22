@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import type { FC } from "react";
+
 import Logo from '../Logo';
 
-const Navigation: FC = () => {
+const Navigation = (): JSX.Element => {
   const [textClass, setTextClass] = useState("text-white selection:bg-white selection:text-joanGreen-500");
   const [animation, setAnimation] = useState("animate-wiggle");
 
   const scrollListener = () => {
     if(window.scrollY < window.innerHeight - 63) {
-      return setTextClass("text-white selection:bg-white selection:text-joanGreen-500");
+      setTextClass("text-white selection:bg-white selection:text-joanGreen-500");
     } else {
-      return setTextClass("text-black selection:bg-black selection:text-white");
+      setTextClass("text-black selection:bg-black selection:text-white");
     }
   }
 

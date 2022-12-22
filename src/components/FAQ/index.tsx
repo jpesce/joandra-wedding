@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import Image from 'next/image'
 import PlusIcon from '../../../public/plus.svg'
 
@@ -46,7 +45,7 @@ interface QuestionProps {
   answer: string,
 }
 
-const Question = ({ question, answer }: QuestionProps) => {
+const Question = ({ question, answer }: QuestionProps): JSX.Element => {
   return (
     <div className="border-t border-joanGreen-500">
       <details className="group">
@@ -57,13 +56,13 @@ const Question = ({ question, answer }: QuestionProps) => {
   )
 }
 
-const FAQ: FC = () => {
+const FAQ = (): JSX.Element => {
   return (
     <div className="p-20 border-t border-joanGreen-500 space-y-16 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
       <div id="FAQ" className="font-serif text-4xl text-center">Perguntas frequentes</div>
       <div className="max-w-[52rem] border-b border-joanGreen-500 m-auto">
         {QUESTIONS.map((question, index) =>
-        <Question key={index} question={question.question} answer={question.answer} />)}
+          <Question key={index} question={question.question} answer={question.answer} />)}
       </div>
     </div>
   )

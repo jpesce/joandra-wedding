@@ -1,5 +1,3 @@
-import type { FC } from "react";
-
 const MENU = [
   {
     name: "Comidas",
@@ -16,7 +14,7 @@ interface ItemsListProps {
   items: string[],
 }
 
-const ItemsList = ({ name, items}:ItemsListProps) => {
+const ItemsList = ({ name, items}: ItemsListProps): JSX.Element => {
   return(
     <div className="space-y-2">
       <dt className="font-condensed uppercase tracking-widest">{name}</dt>
@@ -25,7 +23,7 @@ const ItemsList = ({ name, items}:ItemsListProps) => {
   )
 }
 
-const FoodAndDrinks: FC = () => {
+const FoodAndDrinks = (): JSX.Element => {
   return (
     <dl className="p-20 border-t border-joanGreen-500 space-y-16 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
       {MENU.map((entry, index) => <ItemsList key={index} name={entry.name} items={entry.items} />)}

@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import Image from 'next/image'
 import eventPhoto from '../../../public/chandra-e-joao.jpg'
 
@@ -7,7 +6,7 @@ interface EventInformationProps {
   children: JSX.Element | string,
 }
 
-const EventInformation = ({ name, children }: EventInformationProps) => {
+const EventInformation = ({ name, children }: EventInformationProps): JSX.Element => {
   return (
     <div className="space-y-2">
       <dt className="font-condensed uppercase tracking-widest text-base">{ name }</dt>
@@ -16,7 +15,7 @@ const EventInformation = ({ name, children }: EventInformationProps) => {
   )
 }
 
-const EventDetails: FC = () => {
+const EventDetails = (): JSX.Element => {
   return (
     <div className="flex selection:bg-joanGreen-500 selection:text-white">
       <div className="basis-1/2 border-joanGreen-500 border-r relative">

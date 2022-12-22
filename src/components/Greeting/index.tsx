@@ -1,7 +1,6 @@
-import type { FC } from "react";
 import Image from 'next/image'
 
-const Intro: FC = () => {
+const Intro = (): JSX.Element => {
   return (
     <div className="border-t border-joanGreen-500 flex justify-center py-20 text-center selection:bg-joanGreen-500 selection:text-white">
       <div className="max-w-[36rem] uppercase text-joanGreen-500 space-y-6">
