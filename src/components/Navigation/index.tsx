@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import Logo from '../Logo';
+import Logo from "../Logo";
 
 const Navigation = (): JSX.Element => {
   const [textClass, setTextClass] = useState("text-white selection:bg-white selection:text-joanGreen-500");
@@ -15,11 +15,11 @@ const Navigation = (): JSX.Element => {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', scrollListener);
-    window.addEventListener('resize', scrollListener);
+    window.addEventListener("scroll", scrollListener);
+    window.addEventListener("resize", scrollListener);
     return () => {
-      window.removeEventListener('scroll', scrollListener);
-      window.removeEventListener('resize', scrollListener);
+      window.removeEventListener("scroll", scrollListener);
+      window.removeEventListener("resize", scrollListener);
     }
   }, []);
 

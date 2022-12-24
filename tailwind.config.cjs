@@ -1,7 +1,7 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
+const { fontFamily } = require("tailwindcss/defaultTheme")
+const plugin = require("tailwindcss/plugin")
 
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -13,14 +13,14 @@ module.exports = {
         }
       },
       fontFamily: {
-        serif: ['var(--font-serif)', ...fontFamily.serif],
-        condensed: ['var(--font-condensed)', ...fontFamily.sans]
+        serif: ["var(--font-serif)", ...fontFamily.serif],
+        condensed: ["var(--font-condensed)", ...fontFamily.sans]
       },
       keyframes: {
         wiggle: {
-          '0%, 50%': { transform: 'rotate(0)' },
-          '25%': { transform: 'rotate(-4deg)'},
-          '75%': { transform: 'rotate(4deg)' },
+          "0%, 50%": { transform: "rotate(0)" },
+          "25%": { transform: "rotate(-4deg)"},
+          "75%": { transform: "rotate(4deg)" },
         },
         enter: {
           from: {
@@ -32,7 +32,7 @@ module.exports = {
         }
       },
       animation: {
-        wiggle: 'wiggle 0.4s ease-in-out 2',
+        wiggle: "wiggle 0.4s ease-in-out 2",
         "fade-in": "enter 4s ease-in-out 1",
       }
     },
@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     // Add selection variant from ::selection pseudo-element
     plugin(({ addVariant, e }) => {
-      addVariant('selection', ({ modifySelectors, separator }) => {
+      addVariant("selection", ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${e(`selection${separator}${className}`)} ::selection`;
         })

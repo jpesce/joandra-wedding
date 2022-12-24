@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Image from 'next/image'
-import catsHandshaking from '../../../public/cats-handshaking.jpg'
-import arrowRight from '../../../public/arrow-right.svg'
+import { useState } from "react";
+import Image from "next/image"
+import catsHandshaking from "../../../public/cats-handshaking.jpg"
+import arrowRight from "../../../public/arrow-right.svg"
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string,

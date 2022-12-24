@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import PlusIcon from '../../../public/plus.svg'
+import Image from "next/image"
+import PlusIcon from "../../../public/plus.svg"
 
 const QUESTIONS = [
   {

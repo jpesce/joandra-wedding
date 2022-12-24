@@ -1,13 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 
-import Navigation from '../components/Navigation';
-import Hero from '../components/Hero';
-import EventDetails from '../components/EventDetails';
-import Greeting from '../components/Greeting';
-import FoodAndDrinks from '../components/FoodAndDrinks';
-import RSVP from '../components/RSVP';
-import FAQ from '../components/FAQ';
+import Navigation from "../components/Navigation";
+import Hero from "../components/Hero";
+import EventDetails from "../components/EventDetails";
+import Greeting from "../components/Greeting";
+import FoodAndDrinks from "../components/FoodAndDrinks";
+import RSVP from "../components/RSVP";
+import FAQ from "../components/FAQ";
 
 const Index: NextPage = () => {
   return (
