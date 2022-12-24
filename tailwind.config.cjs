@@ -21,10 +21,19 @@ module.exports = {
           '0%, 50%': { transform: 'rotate(0)' },
           '25%': { transform: 'rotate(-4deg)'},
           '75%': { transform: 'rotate(4deg)' },
+        },
+        enter: {
+          from: {
+            opacity: 0
+          },
+          to: {
+            opacity: 1
+          }
         }
       },
       animation: {
         wiggle: 'wiggle 0.4s ease-in-out 2',
+        "fade-in": "enter 4s ease-in-out 1",
       }
     },
   },
