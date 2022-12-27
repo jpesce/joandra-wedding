@@ -1,6 +1,6 @@
-type Cart = CartItem[]
+type Cart = CartItem[];
 
 interface CartItem {
-  name: string
-  quantity: number
+  name: string;
+  quantity: number;
 }
