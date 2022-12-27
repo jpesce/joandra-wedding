@@ -53,7 +53,7 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
       </div>
       <div className="mr-2">{cartItem.quantity}x</div>
       <div className="flex-grow">{cartItem.name}</div>
-      <div className="ml-4">${itemTotalAmount(cartItem, giftList)}</div>
+      <div className="ml-4">R${itemTotalAmount(cartItem, giftList)}</div>
     </div>
   );
 };
@@ -79,7 +79,7 @@ const MinicartItemList = ({
           />
         ))}
         <div className="border-t border-joanGreen-500 pt-2 text-right">
-          <span className="mr-4">Total</span>${cartTotalAmount(cart, giftList)}
+          <span className="mr-4">Total</span>R${cartTotalAmount(cart, giftList)}
         </div>
         <button
           className="h-10 rounded-sm bg-joanGreen-500 uppercase text-white"
@@ -226,7 +226,7 @@ const Gift = ({ updateCart, name, price, image }: GiftProps): JSX.Element => {
     <div className="mr-[-1px] mt-[-1px] border border-joanGreen-500 p-4 text-sm uppercase">
       <div className="flex">
         <div className="flex-grow">{name}</div>
-        <div>${price}</div>
+        <div>R${price}</div>
       </div>
       <div className="relative mt-2 pb-[125%]">
         <div className="absolute top-0 bottom-0 left-0 right-0">
