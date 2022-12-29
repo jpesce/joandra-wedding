@@ -130,9 +130,10 @@ const PaymentModal = ({
   setPaymentOpen,
 }: PaymentModalProps): JSX.Element => {
   const [pixQRCodeImage, setPixQRCodeImage] = useState("");
+  const [paymentLink, setPaymentLink] = useState("");
 
   useEffect(() => {
-    const generatePixQRCode = async () => {
+    (async () => {
       const pixQRCodeInfo = PixQRCode({
         version: "01",
         key: "08974515628",
@@ -144,9 +145,29 @@ const PaymentModal = ({
       const pixQRCodeBase64 = await pixQRCodeInfo.base64();
 
       setPixQRCodeImage(pixQRCodeBase64);
-    };
+    })();
 
-    generatePixQRCode();
+    const abortController = new AbortController();
+    (async () => {
+      const response = await fetch("/api/paymentlink", {
+        signal: abortController.signal,
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cart.map(item => {
+            return {
+              title: item.name,
+              unit_price: giftList.find(gift => gift.name === item.name)?.price,
+              quantity: item.quantity,
+            }
+          })
+        }),
+      });
+      const responseText = await response.text();
+      setPaymentLink(responseText);
+
+      return () => abortController.abort();
+    })();
   }, [cart]);
 
   return (
@@ -166,6 +187,7 @@ const PaymentModal = ({
         >
           Fechar
         </button>
+        <p>Ou <a href={paymentLink} className="underline" target="_blank" rel="noreferrer">clique aqui para pagar pelo Mercado Pago</a></p>
       </div>
     </div>
   );
