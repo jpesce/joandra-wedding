@@ -9,8 +9,12 @@ module.exports = {
     extend: {
       colors: {
         joanGreen: {
-          500: "#0AED72",
+          50: "#E7F9EF",
+          550: "#00D070",
+          600: "#00BB65",
         },
+        white: "#FFFFFF",
+        black: "#000000"
       },
       fontFamily: {
         serif: ["var(--font-serif)", ...fontFamily.serif],

@@ -27,7 +27,7 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
     <div className="flex">
       <div className="mr-4">
         <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-500"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
           onClick={() =>
             updateCart({ type: "increaseItemQuantity", item: cartItem.name })
           }
@@ -35,7 +35,7 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
           +
         </button>
         <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-500"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
           onClick={() =>
             updateCart({ type: "decreaseItemQuantity", item: cartItem.name })
           }
@@ -43,7 +43,7 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
           -
         </button>
         <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-500"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
           onClick={() =>
             updateCart({ type: "removeItem", item: cartItem.name })
           }
@@ -70,7 +70,7 @@ const MinicartItemList = ({
 }: MinicartItemListProps) => {
   return (
     <>
-      <div className="mb-4 flex flex-col space-y-2 rounded-md border border-joanGreen-500 bg-white p-4 text-sm uppercase text-joanGreen-500">
+      <div className="mb-4 flex flex-col space-y-2 rounded-md border border-joanGreen-600 bg-white p-4 text-sm uppercase text-joanGreen-600">
         {cart.map((cartItem, index) => (
           <MinicartItem
             key={index}
@@ -78,11 +78,11 @@ const MinicartItemList = ({
             updateCart={updateCart}
           />
         ))}
-        <div className="border-t border-joanGreen-500 pt-2 text-right">
+        <div className="border-t border-joanGreen-600 pt-2 text-right">
           <span className="mr-4">Total</span>R${cartTotalAmount(cart, giftList)}
         </div>
         <button
-          className="h-10 rounded-sm bg-joanGreen-500 uppercase text-white"
+          className="h-10 rounded-sm bg-joanGreen-600 uppercase text-white"
           onClick={() => setPaymentOpen(true)}
         >
           Pagar
@@ -99,7 +99,7 @@ const MinicartFloatingButton = ({
   itemQuantity,
 }: MinicartFloatingButtonProps): JSX.Element => {
   return (
-    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-joanGreen-500 bg-white text-joanGreen-500">
+    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-joanGreen-600 bg-white text-joanGreen-600">
       {itemQuantity > 0 && (
         <MinicartQuantityBadge itemQuantity={itemQuantity} />
       )}
@@ -182,7 +182,7 @@ const PaymentModal = ({
           />
         )}
         <button
-          className="h-10 w-full rounded-full border border-joanGreen-500 px-4 text-sm uppercase text-joanGreen-500"
+          className="h-10 w-full rounded-full border border-joanGreen-600 px-4 text-sm uppercase text-joanGreen-600"
           onClick={() => setPaymentOpen(false)}
         >
           Fechar
@@ -245,7 +245,7 @@ interface GiftProps {
 }
 const Gift = ({ updateCart, name, price, image }: GiftProps): JSX.Element => {
   return (
-    <div className="mr-[-1px] mt-[-1px] border border-joanGreen-500 p-4 text-sm uppercase">
+    <div className="mr-[-1px] mt-[-1px] border border-joanGreen-600 p-4 text-sm uppercase">
       <div className="flex">
         <div className="flex-grow">{name}</div>
         <div>R${price}</div>
@@ -261,7 +261,7 @@ const Gift = ({ updateCart, name, price, image }: GiftProps): JSX.Element => {
       </div>
       <button
         onClick={() => updateCart({ type: "increaseItemQuantity", item: name })}
-        className="mt-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-joanGreen-500 px-5 uppercase text-joanGreen-500 transition hover:bg-joanGreen-500 hover:text-white"
+        className="mt-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-joanGreen-600 px-5 uppercase text-joanGreen-600 transition hover:bg-joanGreen-600 hover:text-white"
       >
         Presentear
       </button>
@@ -318,7 +318,7 @@ const GiftList = (): JSX.Element => {
   return (
     <>
       <Minicart cart={cart} updateCart={updateCart} />
-      <div className="space-y-16 border-t border-joanGreen-500 p-20 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
+      <div className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
         <div className="text-center font-serif text-4xl">Dê seu presente</div>
         <div className="grid grid-cols-[repeat(auto-fill,_minmax(19rem,_1fr))] pt-[1px] pr-[1px]">
           {giftList.map((gift, index) => (

@@ -8,7 +8,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
   return (
-    <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-500 focus-within:bg-[#E7F9EF]">
+    <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
       <label
         htmlFor={htmlInputProps.id}
         className="flex h-full shrink-0 items-center pl-4 pr-2 pt-[0.375rem] font-condensed uppercase tracking-widest"
@@ -32,7 +32,7 @@ const TextArea = ({
   ...htmlTextAreaProps
 }: TextAreaProps): JSX.Element => {
   return (
-    <div className="relative inline-block flex h-full w-full flex-col border border-joanGreen-500 focus-within:bg-[#E7F9EF]">
+    <div className="relative inline-block flex h-full w-full flex-col border border-joanGreen-600 focus-within:bg-joanGreen-50">
       <label
         htmlFor={htmlTextAreaProps.id}
         className="flex shrink-0 items-center pl-4 pr-2 pt-4 font-condensed uppercase tracking-widest"
@@ -159,7 +159,7 @@ const RSVPForm = ({
       </div>
       {!submitting ? (
         <button
-          className="group mt-[-1px] flex h-[3rem] w-full select-none items-center justify-center border border-joanGreen-500 bg-joanGreen-500 px-5 uppercase text-white transition hover:bg-[#33FF91]"
+          className="group mt-[-1px] flex h-[3rem] w-full select-none items-center justify-center border border-joanGreen-600 bg-joanGreen-600 px-5 uppercase text-white transition hover:bg-joanGreen-550"
           type="submit"
         >
           <span className="mr-2">Confirmar</span>
@@ -171,7 +171,7 @@ const RSVPForm = ({
         </button>
       ) : (
         <button
-          className="mt-[-1px] h-[3rem] w-full select-none border border-joanGreen-500 bg-[#33FF91] px-5 text-slate-400"
+          className="mt-[-1px] h-[3rem] w-full select-none border border-joanGreen-600 bg-joanGreen-550 px-5 text-slate-400"
           type="submit"
           disabled
         >
@@ -190,7 +190,7 @@ const RSVP = (): JSX.Element => {
   const [state, setState] = useState<RSVPState>("formOpen");
 
   return (
-    <div className="flex min-h-[32.625rem] flex-col space-y-16 border-t border-joanGreen-500 p-20 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
+    <div className="flex min-h-[32.625rem] flex-col space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
       <div className="text-center font-serif text-4xl">
         Confirme sua presença
       </div>

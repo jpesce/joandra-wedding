@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const Intro = (): JSX.Element => {
   return (
-    <div className="flex justify-center border-t border-joanGreen-500 py-20 text-center selection:bg-joanGreen-500 selection:text-white">
-      <div className="max-w-[36rem] space-y-6 uppercase text-joanGreen-500">
+    <div className="flex justify-center border-t border-joanGreen-600 py-20 text-center selection:bg-joanGreen-600 selection:text-white">
+      <div className="max-w-[36rem] space-y-6 uppercase text-joanGreen-600">
         <p>
           Vista uma roupa para se sentir especial e venha confortável para um
           dia de festa com música, bebidas, drinks, antepastos e comidinhas.

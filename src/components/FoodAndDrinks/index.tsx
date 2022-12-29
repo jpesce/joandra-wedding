@@ -43,7 +43,7 @@ const ItemsList = ({ name, items }: ItemsListProps): JSX.Element => {
 
 const FoodAndDrinks = (): JSX.Element => {
   return (
-    <dl className="space-y-16 border-t border-joanGreen-500 p-20 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
+    <dl className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
       {MENU.map((entry, index) => (
         <ItemsList key={index} name={entry.name} items={entry.items} />
       ))}

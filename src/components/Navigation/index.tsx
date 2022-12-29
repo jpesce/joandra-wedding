@@ -4,14 +4,14 @@ import Logo from "../Logo";
 
 const Navigation = (): JSX.Element => {
   const [textClass, setTextClass] = useState(
-    "text-white selection:bg-white selection:text-joanGreen-500"
+    "text-white selection:bg-white selection:text-joanGreen-600"
   );
   const [animation, setAnimation] = useState("animate-wiggle");
 
   const scrollListener = () => {
     if (window.scrollY < window.innerHeight - 63) {
       setTextClass(
-        "text-white selection:bg-white selection:text-joanGreen-500"
+        "text-white selection:bg-white selection:text-joanGreen-600"
       );
     } else {
       setTextClass("text-black selection:bg-black selection:text-white");

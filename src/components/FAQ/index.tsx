@@ -67,7 +67,7 @@ interface QuestionProps {
 
 const Question = ({ question, answer }: QuestionProps): JSX.Element => {
   return (
-    <div className="border-t border-joanGreen-500">
+    <div className="border-t border-joanGreen-600">
       <details className="group">
         <summary className="flex cursor-pointer flex-wrap items-center space-x-2 py-4 pl-2 font-serif text-2xl">
           <Image
@@ -85,11 +85,11 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
 
 const FAQ = (): JSX.Element => {
   return (
-    <div className="space-y-16 border-t border-joanGreen-500 p-20 text-joanGreen-500 selection:bg-joanGreen-500 selection:text-white">
+    <div className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
       <div className="text-center font-serif text-4xl">
         Perguntas frequentes
       </div>
-      <div className="m-auto max-w-[52rem] border-b border-joanGreen-500">
+      <div className="m-auto max-w-[52rem] border-b border-joanGreen-600">
         {QUESTIONS.map((question, index) => (
           <Question
             key={index}
