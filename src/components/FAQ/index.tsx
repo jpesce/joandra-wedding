@@ -23,9 +23,9 @@ const QUESTIONS = [
       "Agosto em BH costuma fazer frio de noite. Então melhor garantir uma blusinha, mesmo se o dia estiver quente.",
   },
   {
-    question: "Preciso ir de salto, gravata, vestido longo?",
+    question: "Qual é o traje da festa? Preciso ir de salto, gravata, vestido longo?",
     answer:
-      "Não precisa. Queremos todo mundo lindo e à vontade. Vista-se para se sentir especial, do seu jeito, para celebrar esse dia único com a gente! ",
+      "Esse é um dia único e muito especial, queremos todo mundo lindo do seu jeito! Então não precisa usar salto, gravata ou vestido longo, mas venha radiante pois esse evento será fotografado para a posteridade.",
   },
   {
     question:
@@ -47,6 +47,16 @@ const QUESTIONS = [
     question: "A festa termina que hora?",
     answer:
       "Como a festa será em uma área residencial, existe um limite de horário. Então se precisar se programar, nossa hora limite é 22h. Por isso chegue cedo!",
+  },
+  {
+    question: "Tem estacionamento lá?",
+    answer:
+      "Não, mas normalmente a rua tem muito espaço para estacionar. Se for beber melhor ir de Uber ou organizar uma van pra galera. — Se for dirigir, não beba",
+  },
+  {
+    question: "Tem indicações de hotel, salão, etc?",
+    answer:
+      "Não temos, mas estamos super dispostos a ajudar nessa busca! Nos chame pelo whatsapp que conversamos melhor. Nosso número é: Chandra (31) 98876-6550 e João (31) 99289-5008",
   },
 ];
 
