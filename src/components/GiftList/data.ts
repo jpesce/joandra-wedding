@@ -1,4 +1,4 @@
-const giftList: GiftListItem[] = [
+const giftList: GiftList = [
   {
     name: "Mantegueira",
     price: 75,
