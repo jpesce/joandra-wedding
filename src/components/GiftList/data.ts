@@ -97,7 +97,7 @@ const giftList: GiftListItem[] = [
   {
     name: "Mesa de jantar",
     price: 2000,
-    image: "gift-dinner-table.jpg",
+    image: "gift-dinner-table2.jpg",
   },
   {
     name: "Poltrona",
