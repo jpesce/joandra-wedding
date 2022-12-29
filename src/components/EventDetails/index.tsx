@@ -1,5 +1,5 @@
 import Image from "next/image";
-import eventPhoto from "../../../public/chandra-e-joao.jpg";
+import eventPhoto from "../../../public/event.jpg";
 
 interface EventInformationProps {
   name: string;
