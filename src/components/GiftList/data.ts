@@ -17,7 +17,7 @@ const giftList: GiftListItem[] = [
    {
     name: "Tábuas de corte",
     price: 175,
-    image: "gift-chopping-board",
+    image: "gift-chopping-board.jpg",
   },
   {
     name: "Manta para sofá",
