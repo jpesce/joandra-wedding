@@ -57,7 +57,7 @@ const giftList: GiftListItem[] = [
   {
     name: "Difusor de aroma/luminária",
     price: 500,
-    image: "gift-aroma-diffuser-lamp.jpg",
+    image: "gift-aroma-diffuser-lamp2.jpg",
   },
   {
     name: "Frigideira antiaderente",
