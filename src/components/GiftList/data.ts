@@ -14,10 +14,20 @@ const giftList: GiftListItem[] = [
     price: 150,
     image: "gift-glass-jar-storage.jpg",
   },
+   {
+    name: "Tábuas de corte",
+    price: 175,
+    image: "gift-chopping-board.jpg",
+  },
   {
     name: "Manta para sofá",
     price: 200,
     image: "gift-sofa-blanket.jpg",
+  },
+  {
+    name: "Conjunto de copos",
+    price: 225,
+    image: "gift-cup.jpg",
   },
   {
     name: "Moedor de pimenta",
@@ -25,9 +35,19 @@ const giftList: GiftListItem[] = [
     image: "gift-pepper-grinder.jpg",
   },
   {
+    name: "Dupla de cesto",
+    price: 275,
+    image: "gift-rope-basket.jpg",
+  },
+  {
     name: "Cafeteira prensa francesa",
     price: 300,
     image: "gift-french-press.jpg",
+  },
+  {
+    name: "Luminária de opalina",
+    price: 350,
+    image: "gift-opaline-lamp.jpg",
   },
   {
     name: "Conjunto de taças",
@@ -77,7 +97,7 @@ const giftList: GiftListItem[] = [
   {
     name: "Mesa de jantar",
     price: 2000,
-    image: "gift-dinner-table.jpg",
+    image: "gift-dinner-table2.jpg",
   },
   {
     name: "Poltrona",
