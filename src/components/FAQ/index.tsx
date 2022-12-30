@@ -11,7 +11,7 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
       <details className="group">
         <summary className="flex cursor-pointer flex-wrap items-center space-x-2 py-4 pl-2 font-serif text-2xl">
           <IconPlus className="h-[42px] transition duration-500 ease-in-out group-open:rotate-[135deg]" />
-          <p>{question}</p>
+          <p className="pt-1">{question}</p>
         </summary>
         <div className="px-[3.8rem] pb-8">{answer}</div>
       </details>

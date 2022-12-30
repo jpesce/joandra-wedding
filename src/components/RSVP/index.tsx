@@ -163,7 +163,7 @@ const RSVPForm = ({
           type="submit"
         >
           <span className="mr-2">Confirmar</span>
-          <IconArrowRight className="rotate-[-45deg] transition duration-300 group-hover:rotate-0" />
+          <IconArrowRight className="rotate-[-45deg] transition duration-300 group-hover:rotate-0 h-[13px]" />
         </button>
       ) : (
         <button

@@ -35,7 +35,7 @@ const Navigation = (): JSX.Element => {
         onAnimationEnd={() => setAnimation("")}
         className={`fixed top-8 left-12 z-40 w-[7rem] ${animation}`}
       >
-        <Image src={logo} alt="Chandra e João" />
+        <Image src={logo} alt="Chandra e João" className="select-none"/>
       </a>
       <nav className={`fixed top-14 right-20 space-x-8 ${textClass} z-40`}>
         <a href="#a-festa">A festa</a>

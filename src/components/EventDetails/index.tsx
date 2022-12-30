@@ -26,8 +26,7 @@ const EventDetails = (): JSX.Element => {
         <Image
           src={eventPhoto}
           alt="Chandra e João sorrindo"
-          fill
-          className="object-cover"
+          className="object-cover w-full h-full select-none"
         />
       </div>
       <div className="basis-1/2 px-16 py-20 text-joanGreen-600">
@@ -37,7 +36,7 @@ const EventDetails = (): JSX.Element => {
               Sábado, cinco de agosto de dois mil e vinte e três
               <a
                 className="nowrap relative top-[-2px] ml-4 select-none whitespace-nowrap rounded-full border border-joanGreen-600 py-[0.25rem] px-[0.75rem] align-middle font-sans text-sm hover:bg-joanGreen-600 hover:text-white"
-                href="https://calendar.google.com/calendar/u/0/r/eventedit?dates=20230805T173000Z/20230806T010000Z&text=Casamento+Chandra+%26+Jo%C3%A3o&location=Av.+Professor+Cl%C3%B3vis+Salgado,+1485+-+Bandeirantes,+Belo+Horizonte/MG&details=https://chandraejoao.io/"
+                href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -125,7 +125,7 @@ const MinicartFloatingButton = ({
       {itemQuantity > 0 && (
         <MinicartQuantityBadge itemQuantity={itemQuantity} />
       )}
-      <IconGift />
+      <IconGift className="h-[33px]" />
     </div>
   );
 };
@@ -296,7 +296,7 @@ const Gift = ({
       <div className="relative mt-2 pb-[125%]">
         <div className="absolute top-0 bottom-0 left-0 right-0">
           <Image
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain select-none"
             src={require(`../../../public/${image}`)}
             alt={name}
           />
