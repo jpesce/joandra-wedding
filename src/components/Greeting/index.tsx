@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Signatures from "../../../public/signatures.react.svg";
 
 const Intro = (): JSX.Element => {
   return (
@@ -11,13 +11,7 @@ const Intro = (): JSX.Element => {
           confortável para um dia de festa com música, bebidas, drinks,
           antepastos e comidinhas. Gostoso demais.
         </p>
-        <Image
-          className="m-auto"
-          src="/signatures.svg"
-          alt="Chandra e João"
-          width="290"
-          height="46"
-        />
+        <Signatures className="m-auto text-black" />
       </div>
     </div>
   );

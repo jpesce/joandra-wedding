@@ -13,5 +13,21 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  webpack: (config) => {
+    /** @type {import("webpack").RuleSetRule[] } */
+    const configRules = config.module.rules;
+    const fileLoaderRule = configRules && configRules.find(
+      (rule) => rule.test instanceof RegExp && rule.test.test(".svg")
+    );
+    if(fileLoaderRule) fileLoaderRule.exclude = /\.react\.svg$/;
+
+    config.module.rules.push({
+      test: /\.react\.svg$/i,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  }
 };
+
 export default config;

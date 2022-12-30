@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import catsHandshaking from "../../../public/cats-handshaking.jpg";
-import arrowRight from "../../../public/arrow-right.svg";
+import IconArrowRight from "../../../public/icon-arrow-right.react.svg";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -163,11 +163,7 @@ const RSVPForm = ({
           type="submit"
         >
           <span className="mr-2">Confirmar</span>
-          <Image
-            src={arrowRight}
-            alt="Right arrow"
-            className="rotate-[-45deg] transition duration-300 group-hover:rotate-0"
-          />
+          <IconArrowRight className="rotate-[-45deg] transition duration-300 group-hover:rotate-0" />
         </button>
       ) : (
         <button

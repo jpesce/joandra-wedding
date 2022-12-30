@@ -1,5 +1,4 @@
-import Image from "next/image";
-import PlusIcon from "../../../public/plus.svg";
+import IconPlus from "../../../public/icon-plus.react.svg";
 import questionList from "./data";
 
 interface QuestionProps {
@@ -11,11 +10,7 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
     <div className="border-t border-joanGreen-600">
       <details className="group">
         <summary className="flex cursor-pointer flex-wrap items-center space-x-2 py-4 pl-2 font-serif text-2xl">
-          <Image
-            src={PlusIcon}
-            alt="+"
-            className="transition duration-500 ease-in-out group-open:rotate-[135deg]"
-          />{" "}
+          <IconPlus className="transition duration-500 ease-in-out group-open:rotate-[135deg]" />
           <p>{question}</p>
         </summary>
         <div className="px-[3.8rem] pb-8">{answer}</div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-
-import Logo from "../Logo";
+import Image from "next/image";
+import logo from "../../../public/chandra-e-joao.svg";
 
 const Navigation = (): JSX.Element => {
   const [textClass, setTextClass] = useState(
@@ -35,7 +35,7 @@ const Navigation = (): JSX.Element => {
         onAnimationEnd={() => setAnimation("")}
         className={`fixed top-8 left-12 z-40 w-[7rem] ${animation}`}
       >
-        <Logo />
+        <Image src={logo} alt="Chandra e João" />
       </a>
       <nav className={`fixed top-14 right-20 space-x-8 ${textClass} z-40`}>
         <a href="#a-festa">A festa</a>

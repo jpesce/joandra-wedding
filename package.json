@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@next/font": "^13.0.7",
+    "@types/webpack": "^5.28.0",
+    "buffer": "^6.0.3",
     "mercadopago": "^1.5.14",
     "next": "^13.0.2",
     "qrcode-pix": "5.0.0",
@@ -20,6 +22,7 @@
     "zod": "^3.18.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
     "@types/mercadopago": "^1.5.8",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
