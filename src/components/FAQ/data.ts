@@ -20,7 +20,8 @@ const questionList: QuestionList = [
       "Agosto em BH costuma fazer frio de noite. Então melhor garantir uma blusinha, mesmo se o dia estiver quente.",
   },
   {
-    question: "Qual é o traje da festa? Preciso ir de salto, gravata, vestido longo?",
+    question:
+      "Qual é o traje da festa? Preciso ir de salto, gravata, vestido longo?",
     answer:
       "Esse é um dia único e muito especial, queremos todo mundo lindo do seu jeito! Então não precisa usar salto, gravata ou vestido longo, mas venha radiante pois esse evento será fotografado para a posteridade.",
   },

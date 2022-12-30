@@ -7,7 +7,10 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
-  MERCADOPAGO_ACCESS_TOKEN: z.string().startsWith("TEST").or(z.string().startsWith("APP_USR"))
+  MERCADOPAGO_ACCESS_TOKEN: z
+    .string()
+    .startsWith("TEST")
+    .or(z.string().startsWith("APP_USR")),
 });
 
 /**

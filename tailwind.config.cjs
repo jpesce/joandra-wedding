@@ -14,7 +14,7 @@ module.exports = {
           600: "#00BB65",
         },
         white: "#FFFFFF",
-        black: "#000000"
+        black: "#000000",
       },
       fontFamily: {
         serif: ["var(--font-serif)", ...fontFamily.serif],

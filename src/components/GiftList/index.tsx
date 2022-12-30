@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { useReducer, useState, useEffect } from "react";
 import { QrCodePix as PixQRCode } from "qrcode-pix";
+
 import IconGift from "../../../public/icon-gift.react.svg";
+import IconTrash from "../../../public/icon-trash.react.svg";
+import IconPlus from "../../../public/icon-plus.react.svg";
+import IconMinus from "../../../public/icon-minus.react.svg";
+import IconX from "../../../public/icon-x.react.svg";
 
 import { cartTotalAmount, itemTotalAmount } from "./cartUtils";
 import giftList from "./data";
@@ -13,7 +18,7 @@ const MinicartQuantityBadge = ({
   itemQuantity,
 }: MinicartQuantityBadgeProps): JSX.Element => {
   return (
-    <div className="absolute top-[-0.5rem] right-0 flex h-6 min-w-[1.5rem] items-center justify-center rounded-full bg-rose-500 px-[0.4rem] text-sm text-white">
+    <div className="absolute top-[-0.5rem] right-0 flex h-[22px] min-w-[22px] select-none items-center justify-center rounded-full bg-black px-[0.4rem] text-xs text-white">
       {itemQuantity}
     </div>
   );
@@ -25,34 +30,34 @@ interface MinicartItemProps {
 }
 const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
   return (
-    <div className="flex">
-      <div className="mr-4">
+    <div className="flex items-center selection:bg-joanGreen-600 selection:text-white">
+      <button
+        className="mr-2 ml-[-0.25rem] flex h-6 w-6 items-center justify-center rounded-full hover:bg-joanGreen-50"
+        onClick={() => updateCart({ type: "removeItem", item: cartItem.name })}
+      >
+        <IconTrash className="h-[14.5px]" />
+      </button>
+      <div className="mr-4 flex items-center rounded-full border border-joanGreen-600">
         <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
+          className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-joanGreen-50"
           onClick={() =>
             updateCart({ type: "increaseItemQuantity", item: cartItem.name })
           }
         >
-          +
+          <IconPlus className="h-[18px] stroke-joanGreen-600 stroke-1" />
         </button>
+        <div className="w-4 select-none text-center text-xs">
+          {cartItem.quantity}
+        </div>
         <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
+          className="flex h-6 w-6 items-center justify-center rounded-full hover:bg-joanGreen-50"
           onClick={() =>
             updateCart({ type: "decreaseItemQuantity", item: cartItem.name })
           }
         >
-          -
-        </button>
-        <button
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-joanGreen-600"
-          onClick={() =>
-            updateCart({ type: "removeItem", item: cartItem.name })
-          }
-        >
-          x
+          <IconMinus className="h-[14px] " />
         </button>
       </div>
-      <div className="mr-2">{cartItem.quantity}x</div>
       <div className="flex-grow">{cartItem.name}</div>
       <div className="ml-4">R${itemTotalAmount(cartItem, giftList)}</div>
     </div>
@@ -63,33 +68,49 @@ interface MinicartItemListProps {
   updateCart: UpdateCart;
   setPaymentOpen: SetPaymentOpen;
   cart: Cart;
+  setItemListOpen: SetItemListOpen;
+  open: boolean;
 }
 const MinicartItemList = ({
   cart,
   updateCart,
   setPaymentOpen,
-}: MinicartItemListProps) => {
+  setItemListOpen,
+  open,
+}: MinicartItemListProps): JSX.Element => {
+  if (!open) return <></>;
   return (
-    <>
-      <div className="mb-4 flex flex-col space-y-2 rounded-md border border-joanGreen-600 bg-white p-4 text-sm uppercase text-joanGreen-600">
-        {cart.map((cartItem, index) => (
-          <MinicartItem
-            key={index}
-            cartItem={cartItem}
-            updateCart={updateCart}
-          />
-        ))}
-        <div className="border-t border-joanGreen-600 pt-2 text-right">
-          <span className="mr-4">Total</span>R${cartTotalAmount(cart, giftList)}
+    <div className="mb-4 rounded-md shadow-xl">
+      <div className="flex w-[29rem] flex-col rounded-md border border-joanGreen-600 bg-white text-sm uppercase text-joanGreen-600">
+        <button
+          className="absolute -top-[0.85rem] -right-[0.85rem] flex h-8 w-8 items-center justify-center rounded-full border border-joanGreen-600 bg-white hover:bg-joanGreen-50"
+          onClick={() => setItemListOpen(false)}
+        >
+          <IconX className="h-[14px]" />
+        </button>
+        <div className="space-y-4 p-4 pt-6">
+          <div className="space-y-2">
+            {cart.map((cartItem, index) => (
+              <MinicartItem
+                key={index}
+                cartItem={cartItem}
+                updateCart={updateCart}
+              />
+            ))}
+          </div>
+          <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
+            <span className="mr-4">Total</span>
+            <span>R${cartTotalAmount(cart, giftList)}</span>
+          </div>
         </div>
         <button
-          className="h-10 rounded-sm bg-joanGreen-600 uppercase text-white"
+          className="h-12 select-none rounded-b-sm border-t border-joanGreen-600 bg-joanGreen-600 text-base uppercase text-white hover:bg-joanGreen-550"
           onClick={() => setPaymentOpen(true)}
         >
-          Pagar
+          Pagar agora
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -100,7 +121,7 @@ const MinicartFloatingButton = ({
   itemQuantity,
 }: MinicartFloatingButtonProps): JSX.Element => {
   return (
-    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-joanGreen-600 bg-white text-joanGreen-600">
+    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-joanGreen-600 bg-white text-joanGreen-600 shadow-xl">
       {itemQuantity > 0 && (
         <MinicartQuantityBadge itemQuantity={itemQuantity} />
       )}
@@ -142,13 +163,14 @@ const PaymentModal = ({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: cart.map(item => {
+          items: cart.map((item) => {
             return {
               title: item.name,
-              unit_price: giftList.find(gift => gift.name === item.name)?.price,
+              unit_price: giftList.find((gift) => gift.name === item.name)
+                ?.price,
               quantity: item.quantity,
-            }
-          })
+            };
+          }),
         }),
       });
       const responseText = await response.text();
@@ -175,7 +197,17 @@ const PaymentModal = ({
         >
           Fechar
         </button>
-        <p>Ou <a href={paymentLink} className="underline" target="_blank" rel="noreferrer">clique aqui para pagar pelo Mercado Pago</a></p>
+        <p>
+          Ou{" "}
+          <a
+            href={paymentLink}
+            className="underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            clique aqui para pagar pelo Mercado Pago
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -185,8 +217,15 @@ type SetPaymentOpen = React.Dispatch<React.SetStateAction<boolean>>;
 interface MinicartProps {
   updateCart: UpdateCart;
   cart: Cart;
+  itemListOpen: boolean;
+  setItemListOpen: SetItemListOpen;
 }
-const Minicart = ({ cart, updateCart }: MinicartProps): JSX.Element => {
+const Minicart = ({
+  cart,
+  updateCart,
+  itemListOpen,
+  setItemListOpen,
+}: MinicartProps): JSX.Element => {
   const itemQuantity = cart.reduce(
     (accumulator: number, item: CartItem) => (accumulator += item.quantity),
     0
@@ -210,10 +249,19 @@ const Minicart = ({ cart, updateCart }: MinicartProps): JSX.Element => {
               cart={cart}
               updateCart={updateCart}
               setPaymentOpen={setPaymentOpen}
+              setItemListOpen={setItemListOpen}
+              open={itemListOpen}
             />
           )}
           {itemQuantity > 0 ? (
-            <MinicartFloatingButton itemQuantity={itemQuantity} />
+            <button
+              className="rounded-full"
+              onClick={() =>
+                itemListOpen ? setItemListOpen(false) : setItemListOpen(true)
+              }
+            >
+              <MinicartFloatingButton itemQuantity={itemQuantity} />
+            </button>
           ) : (
             <a href="#lista-de-presentes">
               <MinicartFloatingButton itemQuantity={itemQuantity} />
@@ -230,8 +278,15 @@ interface GiftProps {
   name: string;
   price: number;
   image: string;
+  setItemListOpen: SetItemListOpen;
 }
-const Gift = ({ updateCart, name, price, image }: GiftProps): JSX.Element => {
+const Gift = ({
+  updateCart,
+  name,
+  price,
+  image,
+  setItemListOpen,
+}: GiftProps): JSX.Element => {
   return (
     <div className="mr-[-1px] mt-[-1px] border border-joanGreen-600 p-4 text-sm uppercase">
       <div className="flex">
@@ -248,7 +303,10 @@ const Gift = ({ updateCart, name, price, image }: GiftProps): JSX.Element => {
         </div>
       </div>
       <button
-        onClick={() => updateCart({ type: "increaseItemQuantity", item: name })}
+        onClick={() => {
+          setItemListOpen(true);
+          updateCart({ type: "increaseItemQuantity", item: name });
+        }}
         className="mt-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-joanGreen-600 px-5 uppercase text-joanGreen-600 transition hover:bg-joanGreen-600 hover:text-white"
       >
         Presentear
@@ -300,12 +358,19 @@ const cartReducer: CartReducer = (state, action) => {
 };
 
 type UpdateCart = React.Dispatch<React.ReducerAction<CartReducer>>;
+type SetItemListOpen = React.Dispatch<React.SetStateAction<boolean>>;
 const GiftList = (): JSX.Element => {
   const [cart, updateCart] = useReducer<CartReducer>(cartReducer, []);
+  const [itemListOpen, setItemListOpen] = useState(false);
 
   return (
     <>
-      <Minicart cart={cart} updateCart={updateCart} />
+      <Minicart
+        cart={cart}
+        updateCart={updateCart}
+        itemListOpen={itemListOpen}
+        setItemListOpen={setItemListOpen}
+      />
       <div className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
         <div className="text-center font-serif text-4xl">Dê seu presente</div>
         <div className="grid grid-cols-[repeat(auto-fill,_minmax(19rem,_1fr))] pt-[1px] pr-[1px]">
@@ -316,6 +381,7 @@ const GiftList = (): JSX.Element => {
               name={gift.name}
               price={gift.price}
               image={gift.image}
+              setItemListOpen={setItemListOpen}
             />
           ))}
         </div>

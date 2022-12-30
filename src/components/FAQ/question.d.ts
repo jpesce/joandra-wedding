@@ -1,4 +1,4 @@
-type QuestionList = Question[]
+type QuestionList = Question[];
 
 interface Question {
   question: string;

@@ -16,10 +16,12 @@ const config = {
   webpack: (config) => {
     /** @type {import("webpack").RuleSetRule[] } */
     const configRules = config.module.rules;
-    const fileLoaderRule = configRules && configRules.find(
-      (rule) => rule.test instanceof RegExp && rule.test.test(".svg")
-    );
-    if(fileLoaderRule) fileLoaderRule.exclude = /\.react\.svg$/;
+    const fileLoaderRule =
+      configRules &&
+      configRules.find(
+        (rule) => rule.test instanceof RegExp && rule.test.test(".svg")
+      );
+    if (fileLoaderRule) fileLoaderRule.exclude = /\.react\.svg$/;
 
     config.module.rules.push({
       test: /\.react\.svg$/i,
@@ -27,7 +29,7 @@ const config = {
     });
 
     return config;
-  }
+  },
 };
 
 export default config;
