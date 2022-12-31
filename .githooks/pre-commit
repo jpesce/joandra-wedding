@@ -1,0 +1,19 @@
+#!/bin/sh
+
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
+[ -z "$FILES" ] && exit 0
+
+# Prettify and lint all staged files
+echo "$FILES" | xargs yarn prettier --ignore-unknown --write
+PRETTIER_EXIT_CODE=$?
+
+echo "$FILES" | xargs yarn eslint
+ESLINT_EXIT_CODE=$?
+
+# Return error if checks commands had errors
+[[ $PRETTIER_EXIT_CODE -eq 1 || $ESLINT_EXIT_CODE -eq 1 ]] && exit 1
+
+# Add back the modified files to staging
+echo "$FILES" | xargs git add
+
+exit 0
