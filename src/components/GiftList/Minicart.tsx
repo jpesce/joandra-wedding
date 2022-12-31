@@ -146,7 +146,7 @@ const Minicart = ({
     (accumulator: number, item: CartItem) => (accumulator += item.quantity),
     0
   );
-  const [paymentOpen, setPaymentOpen] = useState(true);
+  const [paymentOpen, setPaymentOpen] = useState(false);
 
   useEffect(() => {
     if (paymentOpen) document.body.style.overflow = "hidden";
