@@ -30,7 +30,7 @@ const Navigation = (): JSX.Element => {
   return (
     <>
       <a
-        href="#"
+        href="#hero"
         onMouseEnter={() => setAnimation("animate-wiggle")}
         onAnimationEnd={() => setAnimation("")}
         className={`fixed top-8 left-12 z-40 w-[7rem] ${animation}`}

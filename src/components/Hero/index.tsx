@@ -1,6 +1,9 @@
 const Hero = (): JSX.Element => {
   return (
-    <div className="relative h-screen min-h-[32rem] bg-joanGreen-600 selection:bg-white selection:text-joanGreen-600">
+    <div
+      id="hero"
+      className="relative h-screen min-h-[32rem] bg-joanGreen-600 selection:bg-white selection:text-joanGreen-600"
+    >
       <div className="absolute bottom-16 left-12">
         <div className="mb-8 max-w-2xl font-serif text-7xl text-white">
           <span className="italic">Chandra & João</span> vão finalmente fazer

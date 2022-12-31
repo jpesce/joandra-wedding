@@ -65,12 +65,11 @@ interface RSVPFormElements extends HTMLFormControlsCollection {
 interface HTMLRSVPFormElement extends HTMLFormElement {
   readonly elements: RSVPFormElements;
 }
-const RSVPForm = ({
-  setRSVPState,
-}: {
+type RSVPFormProps = {
   setRSVPState: React.Dispatch<React.SetStateAction<RSVPState>>;
-}): JSX.Element => {
-  const [submitting, setSubmitting] = useState(false);
+};
+const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   interface FormData {
     name: string;
