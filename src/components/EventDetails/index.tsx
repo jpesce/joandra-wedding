@@ -25,7 +25,7 @@ const EventDetails = (): JSX.Element => {
       <div className="relative basis-1/2 border-r border-joanGreen-600">
         <Image
           src={eventPhoto}
-          alt="Chandra e João sorrindo"
+          alt="Melvin Sokolsky - Sidekick, Harper's Bazaar"
           className="h-full w-full select-none object-cover"
         />
       </div>
