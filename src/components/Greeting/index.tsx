@@ -11,7 +11,7 @@ const Intro = (): JSX.Element => {
           confortável para um dia de festa com música, bebidas, drinks,
           antepastos e comidinhas. Gostoso demais.
         </p>
-        <Signatures className="m-auto text-black h-14" />
+        <Signatures className="m-auto h-14 text-black" />
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const EventDetails = (): JSX.Element => {
         <Image
           src={eventPhoto}
           alt="Chandra e João sorrindo"
-          className="object-cover w-full h-full select-none"
+          className="h-full w-full select-none object-cover"
         />
       </div>
       <div className="basis-1/2 px-16 py-20 text-joanGreen-600">

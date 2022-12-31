@@ -9,13 +9,13 @@ const Hero = (): JSX.Element => {
         <div className="space-x-4">
           <a
             href="#lista-de-presentes"
-            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-white transition hover:bg-white hover:text-joanGreen-600 uppercase text-sm"
+            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600"
           >
             Escolher presente
           </a>
           <a
             href="#confirmar-presenca"
-            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-white transition hover:bg-white hover:text-joanGreen-600 uppercase text-sm"
+            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600"
           >
             Confirmar presença
           </a>

@@ -28,7 +28,7 @@ const Gift = ({
       <div className="relative mt-2 pb-[125%]">
         <div className="absolute top-0 bottom-0 left-0 right-0">
           <Image
-            className="h-full w-full object-contain select-none"
+            className="h-full w-full select-none object-contain"
             src={require(`../../../public/${image}`)}
             alt={name}
           />
