@@ -7,7 +7,7 @@ FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
 echo "$FILES" | xargs yarn prettier --ignore-unknown --write
 PRETTIER_EXIT_CODE=$?
 
-echo "$FILES" | xargs yarn eslint
+yarn lint
 ESLINT_EXIT_CODE=$?
 
 # Return error if checks commands had errors
