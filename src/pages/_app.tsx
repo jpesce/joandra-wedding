@@ -6,7 +6,7 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import { polyfill as smoothScrollPolyfill } from "smoothscroll-polyfill";
 
 import "../styles/globals.css";
-import { serif, condensed } from "./_localFonts";
+import { serif, condensed } from "../fonts/localFonts";
 
 const App: AppType = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
