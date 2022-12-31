@@ -16,7 +16,7 @@ const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
         {label}
       </label>
       <input
-        className="h-full w-full bg-transparent pl-2 pr-4 text-black focus:outline-none"
+        className="h-full w-full bg-transparent pl-2 pr-4 text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:bg-joanGreen-50"
         {...htmlInputProps}
       ></input>
     </div>
@@ -40,7 +40,7 @@ const TextArea = ({
         {label}
       </label>
       <textarea
-        className="h-full w-full bg-transparent px-4 pb-4 pt-2 text-black focus:outline-none"
+        className="h-full w-full bg-transparent px-4 pb-4 pt-2 text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:bg-joanGreen-50"
         {...htmlTextAreaProps}
       ></textarea>
     </div>
