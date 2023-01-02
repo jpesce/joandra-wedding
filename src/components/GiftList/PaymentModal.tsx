@@ -9,7 +9,7 @@ import giftList from "./data";
 
 const Loading = (): JSX.Element => {
   return (
-    <div className="flex h-[19.25rem] w-[42.125rem] items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center md:h-[19.25rem] md:w-[42.125rem]">
       <div className="absolute h-10 w-10 animate-ping rounded-full bg-joanGreen-600"></div>
       <div className="h-10 w-10 rounded-full bg-joanGreen-600"></div>
     </div>
@@ -25,19 +25,29 @@ const PaymentInfo = ({
   paymentLink,
 }: PaymentInfoProps): JSX.Element => {
   return (
-    <div className="flex items-center space-x-10">
-      <div className="flex flex-col">
+    <div className="flex max-w-[32rem] flex-col items-center p-10 pt-20 md:max-w-[none] md:flex-row md:space-x-10 md:p-12">
+      <div className="order-1 mt-8 flex flex-col md:order-none md:m-0">
         {pixQRCode && (
-          <div className="h-[250px] w-[250px] overflow-hidden">
+          <>
             <Image
               src={pixQRCode.base64Image}
               alt="QR code para pagamento via Pix"
-              width={275}
-              height={275}
+              width={200}
+              height={200}
               style={{ imageRendering: "pixelated" }}
-              className="scale-[1.161]"
+              className="scale-[1.161] md:hidden"
             />
-          </div>
+            <div className="hidden h-[250px] w-[250px] overflow-hidden md:block">
+              <Image
+                src={pixQRCode.base64Image}
+                alt="QR code para pagamento via Pix"
+                width={275}
+                height={275}
+                style={{ imageRendering: "pixelated" }}
+                className="scale-[1.161]"
+              />
+            </div>
+          </>
         )}
         <div className="mt-6 flex rounded-full border border-joanGreen-600">
           <input
@@ -57,8 +67,8 @@ const PaymentInfo = ({
           </button>
         </div>
       </div>
-      <div className="w-[24rem] space-y-8 text-sm">
-        <p className="text-center font-serif text-3xl tracking-tight">
+      <div className="space-y-8 text-sm md:w-[24rem]">
+        <p className="text-center font-serif text-2xl tracking-tight md:text-3xl">
           O pagamento pelo Pix é melhor pra gente e não tem taxas :)
         </p>
         <div className="flex space-x-6 px-2">
@@ -75,7 +85,7 @@ const PaymentInfo = ({
             <p>Faça a leitura do QR code, ou copie e cole o código</p>
           </div>
         </div>
-        <div className="border-t border-joanGreen-600 pt-6">
+        <div className="hidden border-t border-joanGreen-600 pt-6 md:block">
           <p className="px-6 text-center">
             Se não puder pagar pelo Pix, você também pode{" "}
             <a
@@ -88,6 +98,19 @@ const PaymentInfo = ({
             </a>
           </p>
         </div>
+      </div>
+      <div className="order-2 mt-10 border-t border-joanGreen-600 pt-6 text-sm md:hidden">
+        <p className="px-6 text-center">
+          Se não puder pagar pelo Pix, você também pode{" "}
+          <a
+            href={paymentLink}
+            className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
+            target="_blank"
+            rel="noreferrer"
+          >
+            clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -150,18 +173,18 @@ const PaymentModal = ({
 
   return (
     <div
-      className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black bg-opacity-60 text-joanGreen-600"
+      className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-end justify-center bg-black bg-opacity-60 text-joanGreen-600 md:items-center"
       onClick={() => setPaymentOpen(false)}
     >
       <div
-        className="relative rounded-lg bg-white p-12 selection:bg-joanGreen-600 selection:text-white"
+        className="relative flex h-full w-screen animate-fade-in-up items-center justify-center overflow-y-auto bg-white selection:bg-joanGreen-600 selection:text-white md:h-auto md:w-auto md:rounded-lg"
         onClick={(event) => event.stopPropagation()}
       >
         <button
-          className="absolute top-2 right-2 flex items-center justify-center rounded-full p-2 hover:bg-joanGreen-50"
+          className="fixed top-2 right-2 flex items-center justify-center rounded-full bg-white p-2 hover:bg-joanGreen-50 md:absolute"
           onClick={() => setPaymentOpen(false)}
         >
-          <IconX className="h-[24px]" />
+          <IconX className="h-[28px]" />
         </button>
         {loading ? (
           <Loading />

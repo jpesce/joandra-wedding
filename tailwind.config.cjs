@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
@@ -26,7 +27,7 @@ module.exports = {
           "25%": { transform: "rotate(-4deg)" },
           "75%": { transform: "rotate(4deg)" },
         },
-        enter: {
+        "fade-in": {
           from: {
             opacity: 0,
           },
@@ -34,10 +35,21 @@ module.exports = {
             opacity: 1,
           },
         },
+        "fade-in-up": {
+          from: {
+            opacity: 0,
+            transform: "translate3d(0, 1.5rem, 0)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
       },
       animation: {
         wiggle: "wiggle 0.4s ease-in-out 2",
-        "fade-in": "enter 4s ease-in-out 1",
+        "fade-in": "fade-in 4s ease-in-out 1",
+        "fade-in-up": "fade-in-up 0.25s ease-in-out 1",
       },
     },
   },

@@ -54,17 +54,17 @@ const PayWhatYouWant = ({
   const [payWhatYouWantValue, setPayWhatYouWantValue] = useState(0);
 
   return (
-    <div className="mr-[-1px] mt-[-1px] flex flex-col place-items-center border border-joanGreen-600  bg-joanGreen-50 p-4 text-sm">
-      <div className="flex grow flex-col justify-center">
+    <div className="mr-[-1px] mt-[-1px] flex flex-col place-items-center border border-joanGreen-600  bg-joanGreen-50 p-4 text-sm md:h-auto">
+      <div className="flex grow flex-col justify-center py-16 md:py-0">
         <p className="text-center font-serif text-3xl">Dê o seu valor</p>
         <p className="text-center">Digite o valor do seu presente</p>
-        <div className="">
+        <div>
           <input
             id="payWhatYouWantValue"
             defaultValue="R$ "
             maxLength={8}
             name="pay-what-you-want-value"
-            className="m-auto mt-4 flex w-full w-40 items-center rounded-full bg-white py-[0.75rem] text-center text-xl"
+            className="m-auto mt-4 flex w-full items-center rounded-full bg-white py-[0.75rem] text-center text-xl"
             onChange={(event) =>
               handlePayWhatYouWantInputChange(event, setPayWhatYouWantValue)
             }
@@ -111,7 +111,7 @@ const Gift = ({
   setItemListOpen,
 }: GiftProps): JSX.Element => {
   return (
-    <div className="mr-[-1px] mt-[-1px] border border-joanGreen-600 p-4 text-sm uppercase">
+    <div className="mr-[-1px] mt-[-1px] border-y border-joanGreen-600 p-4 text-sm uppercase md:border">
       <div className="flex">
         <div className="flex-grow">{name}</div>
         <div>R${price}</div>
@@ -168,7 +168,7 @@ const cartReducer: CartReducer = (
         newState[indexOfItemInCart].quantity -= 1;
         return newState;
       }
-      if (newState[indexOfItemInCart].quantity < 1) {
+      if (newState[indexOfItemInCart].quantity <= 1) {
         newState.length > 1
           ? newState.splice(indexOfItemInCart, 1)
           : newState.pop();
@@ -199,9 +199,9 @@ const GiftList = (): JSX.Element => {
         itemListOpen={itemListOpen}
         setItemListOpen={setItemListOpen}
       />
-      <div className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
+      <div className="space-y-16 border-t border-joanGreen-600 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:px-8 lg:p-20">
         <div className="text-center font-serif text-4xl">Dê seu presente</div>
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(19rem,_1fr))] pt-[1px] pr-[1px]">
+        <div className="grid grid-cols-1 pt-[1px] pr-[1px] md:grid-cols-[repeat(auto-fill,_minmax(19rem,_1fr))]">
           {giftList.map((gift, index) => (
             <Gift
               key={index}

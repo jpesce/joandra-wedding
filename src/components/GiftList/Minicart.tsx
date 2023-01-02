@@ -30,9 +30,9 @@ interface MinicartItemProps {
 }
 const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
   return (
-    <div className="flex items-center selection:bg-joanGreen-600 selection:text-white">
+    <div className="flex min-h-[35px] items-center selection:bg-joanGreen-600 selection:text-white md:min-h-[auto]">
       <button
-        className="mr-2 ml-[-0.25rem] flex h-6 w-6 items-center justify-center rounded-full hover:bg-joanGreen-50"
+        className="mr-2 ml-[-0.25rem] flex h-6 w-6 min-w-[1.5rem] items-center justify-center rounded-full hover:bg-joanGreen-50"
         onClick={() => updateCart({ type: "removeItem", item: cartItem.name })}
       >
         <IconTrash className="h-[14.5px]" />
@@ -58,7 +58,7 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
           <IconMinus className="h-[14px] " />
         </button>
       </div>
-      <div className="flex-grow">{cartItem.name}</div>
+      <div className="flex-grow leading-tight">{cartItem.name}</div>
       <div className="ml-4">
         R$
         {cartItem.price
@@ -85,37 +85,44 @@ const MinicartItemList = ({
 }: MinicartItemListProps): JSX.Element => {
   if (!open) return <></>;
   return (
-    <div className="mb-4 rounded-md shadow-xl">
-      <div className="flex w-[29rem] flex-col rounded-md border border-joanGreen-600 bg-white text-sm uppercase text-joanGreen-600">
-        <button
-          className="absolute -top-[0.85rem] -right-[0.85rem] flex h-8 w-8 items-center justify-center rounded-full border border-joanGreen-600 bg-white hover:bg-joanGreen-50"
-          onClick={() => setItemListOpen(false)}
-        >
-          <IconX className="h-[14px]" />
-        </button>
-        <div className="space-y-4 p-4 pt-6">
-          <div className="space-y-2">
-            {cart.map((cartItem, index) => (
-              <MinicartItem
-                key={index}
-                cartItem={cartItem}
-                updateCart={updateCart}
-              />
-            ))}
+    <>
+      <div
+        className="fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center bg-black bg-opacity-60 text-joanGreen-600 md:hidden"
+        onClick={() => setItemListOpen(false)}
+      ></div>
+
+      <div className="fixed bottom-0 left-0 right-0 z-40 animate-fade-in-up  shadow-xl md:static md:mb-4">
+        <div className="flex flex-col rounded-t-lg border border-joanGreen-600 bg-white text-sm uppercase text-joanGreen-600 md:w-[29rem] md:rounded-md">
+          <button
+            className="-right-[0.85rem] flex min-h-[2rem] min-w-[2rem] items-center justify-center self-end rounded-full border-joanGreen-600 bg-white p-[0.75rem] hover:bg-joanGreen-50 md:absolute md:-top-[0.85rem] md:border md:p-0"
+            onClick={() => setItemListOpen(false)}
+          >
+            <IconX className="h-[1.75rem] md:h-[0.875rem]" />
+          </button>
+          <div className="space-y-4 p-4 pt-0 md:pt-6">
+            <div className="space-y-2">
+              {cart.map((cartItem, index) => (
+                <MinicartItem
+                  key={index}
+                  cartItem={cartItem}
+                  updateCart={updateCart}
+                />
+              ))}
+            </div>
+            <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
+              <span className="mr-4">Total</span>
+              <span>R${cartTotalAmount(cart, giftList)}</span>
+            </div>
           </div>
-          <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
-            <span className="mr-4">Total</span>
-            <span>R${cartTotalAmount(cart, giftList)}</span>
-          </div>
+          <button
+            className="h-12 select-none border-t border-joanGreen-600 bg-joanGreen-600 text-base uppercase text-white hover:bg-joanGreen-550 md:rounded-b-sm"
+            onClick={() => setPaymentOpen(true)}
+          >
+            Pagar agora
+          </button>
         </div>
-        <button
-          className="h-12 select-none rounded-b-sm border-t border-joanGreen-600 bg-joanGreen-600 text-base uppercase text-white hover:bg-joanGreen-550"
-          onClick={() => setPaymentOpen(true)}
-        >
-          Pagar agora
-        </button>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -164,7 +171,7 @@ const Minicart = ({
         <PaymentModal cart={cart} setPaymentOpen={setPaymentOpen} />
       )}
       <div className="relative z-40">
-        <div className="fixed bottom-12 right-12 flex flex-col items-end">
+        <div className="fixed bottom-4 right-4 flex flex-col items-end md:bottom-6 md:right-6 lg:bottom-12 lg:right-12">
           {itemQuantity > 0 && (
             <MinicartItemList
               cart={cart}
