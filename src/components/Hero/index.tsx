@@ -4,25 +4,23 @@ const Hero = (): JSX.Element => {
       id="hero"
       className="relative h-screen min-h-[32rem] bg-joanGreen-600 selection:bg-white selection:text-joanGreen-600"
     >
-      <div className="absolute bottom-16 left-12">
-        <div className="mb-8 max-w-2xl font-serif text-7xl text-white">
+      <div className="absolute bottom-0 left-0 p-8 lg:py-16 lg:px-12">
+        <div className="mb-8 font-serif text-6xl text-white lg:max-w-2xl lg:text-7xl">
           <span className="italic">Chandra & João</span> vão finalmente fazer
           dessa união uma festa.
         </div>
-        <div className="space-x-4">
-          <a
-            href="#lista-de-presentes"
-            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600"
-          >
-            Escolher presente
-          </a>
-          <a
-            href="#confirmar-presenca"
-            className="inline-flex min-h-[2.5rem] select-none items-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600"
-          >
-            Confirmar presença
-          </a>
-        </div>
+        <a
+          href="#lista-de-presentes"
+          className="mr-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600 lg:w-auto"
+        >
+          Escolher presente
+        </a>
+        <a
+          href="#confirmar-presenca"
+          className="mt-2 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-white px-5 text-sm uppercase text-white transition hover:bg-white hover:text-joanGreen-600 lg:w-auto"
+        >
+          Confirmar presença
+        </a>
       </div>
     </div>
   );
