@@ -132,11 +132,11 @@ const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
       method="post"
       onSubmit={handleSubmit}
     >
-      <div className="flex">
-        <div className="mr-[-1px] grow">
+      <div className="md:flex">
+        <div className="grow basis-1/2 md:-mr-[1px]">
           <Input id="name" name="name" label="Quem é você?" required />
         </div>
-        <div className="grow">
+        <div className="-mt-[1px] grow basis-1/2 md:mt-0">
           <Input
             id="numberOfPersons"
             name="number-of-persons"
@@ -185,7 +185,7 @@ const RSVP = (): JSX.Element => {
   const [state, setState] = useState<RSVPState>("formOpen");
 
   return (
-    <div className="flex min-h-[32.625rem] flex-col space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
+    <div className="flex min-h-[33rem] flex-col space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:min-h-[32.625rem] lg:p-20">
       <div className="text-center font-serif text-4xl">
         Confirme sua presença
       </div>
