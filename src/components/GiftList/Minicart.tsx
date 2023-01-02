@@ -59,7 +59,12 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
         </button>
       </div>
       <div className="flex-grow">{cartItem.name}</div>
-      <div className="ml-4">R${itemTotalAmount(cartItem, giftList)}</div>
+      <div className="ml-4">
+        R$
+        {cartItem.price
+          ? cartItem.price * cartItem.quantity
+          : itemTotalAmount(cartItem, giftList)}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 export const cartTotalAmount = (cart: Cart, giftList: GiftList): number => {
   return cart.reduce((total, cartItem) => {
     const gift = giftList.find((gift) => gift.name === cartItem.name);
+    if (cartItem.price) return total + cartItem.price * cartItem.quantity;
     if (gift) return total + gift.price * cartItem.quantity;
+
     return total;
   }, 0);
 };
