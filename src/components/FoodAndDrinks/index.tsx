@@ -1,31 +1,4 @@
-const MENU = [
-  {
-    name: "Comidas",
-    items: [
-      "Pães",
-      "Frutas",
-      "Queijos",
-      "Embutidos",
-      "Muitos outros antepastos",
-      "Arroz de tomate com burrata e rúcula",
-      "Arroz de polvo",
-      "Arroz mineiro com linguiça e couve",
-    ],
-  },
-  {
-    name: "Bebidas",
-    items: [
-      "Negroni",
-      "Gin & Tônica",
-      "Campari & Tônica",
-      "Boulevardier",
-      "Whisky",
-      "Cerveja",
-      "Suco",
-      "Água",
-    ],
-  },
-];
+import menu from "./data";
 
 interface ItemsListProps {
   name: string;
@@ -43,8 +16,8 @@ const ItemsList = ({ name, items }: ItemsListProps): JSX.Element => {
 
 const FoodAndDrinks = (): JSX.Element => {
   return (
-    <dl className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
-      {MENU.map((entry, index) => (
+    <dl className="space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white lg:p-20">
+      {menu.map((entry, index) => (
         <ItemsList key={index} name={entry.name} items={entry.items} />
       ))}
     </dl>
