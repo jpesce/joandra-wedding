@@ -91,8 +91,6 @@ const PaymentInfo = ({
             <a
               href={paymentLink}
               className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
-              target="_blank"
-              rel="noreferrer"
             >
               clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
             </a>
@@ -105,8 +103,6 @@ const PaymentInfo = ({
           <a
             href={paymentLink}
             className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
-            target="_blank"
-            rel="noreferrer"
           >
             clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
           </a>
