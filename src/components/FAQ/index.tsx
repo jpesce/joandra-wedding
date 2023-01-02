@@ -9,11 +9,11 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
   return (
     <div className="border-t border-joanGreen-600">
       <details className="group">
-        <summary className="flex cursor-pointer flex-wrap items-center space-x-2 py-4 pl-2 font-serif text-2xl">
-          <IconPlus className="h-[42px] transition duration-500 ease-in-out group-open:rotate-[135deg]" />
-          <p className="pt-1">{question}</p>
+        <summary className="flex cursor-pointer space-x-2 py-4 pl-2 font-serif text-2xl">
+          <IconPlus className="h-[42px] shrink-0 self-start transition duration-500 ease-in-out group-open:rotate-[135deg]" />
+          <p className="pt-[0.475rem]">{question}</p>
         </summary>
-        <div className="px-[3.8rem] pb-8">{answer}</div>
+        <div className="px-[3.7rem] pb-8">{answer}</div>
       </details>
     </div>
   );
@@ -21,7 +21,7 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
 
 const FAQ = (): JSX.Element => {
   return (
-    <div className="space-y-16 border-t border-joanGreen-600 p-20 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white">
+    <div className="space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:p-20">
       <div className="text-center font-serif text-4xl">
         Perguntas frequentes
       </div>
