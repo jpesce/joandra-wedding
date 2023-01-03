@@ -4,11 +4,16 @@ import logo from "../../../public/chandra-e-joao.svg";
 
 type Background = "dark" | "light";
 type SetBackground = React.Dispatch<React.SetStateAction<Background>>;
-
-const navigationScrollListener = (setBackground: SetBackground) => {
-  window.scrollY < window.innerHeight - 63
-    ? setBackground("dark")
-    : setBackground("light");
+const setCurrentBackground = (setBackground: SetBackground) => {
+  const heroBottom = document
+    .getElementById("hero")
+    ?.getBoundingClientRect().bottom;
+  const mainNavBottom = document
+    .getElementById("main-nav")
+    ?.getBoundingClientRect().bottom;
+  if (heroBottom && mainNavBottom) {
+    heroBottom > mainNavBottom ? setBackground("dark") : setBackground("light");
+  }
 };
 
 const Navigation = (): JSX.Element => {
@@ -16,18 +21,15 @@ const Navigation = (): JSX.Element => {
   const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
-    window.addEventListener("scroll", () =>
-      navigationScrollListener(setBackground)
-    );
-    window.addEventListener("resize", () =>
-      navigationScrollListener(setBackground)
+    setCurrentBackground(setBackground);
+    ["scroll", "resize"].forEach((event) =>
+      window.addEventListener(event, () => setCurrentBackground(setBackground))
     );
     return () => {
-      window.removeEventListener("scroll", () =>
-        navigationScrollListener(setBackground)
-      );
-      window.removeEventListener("resize", () =>
-        navigationScrollListener(setBackground)
+      ["scroll", "resize"].forEach((event) =>
+        window.removeEventListener(event, () =>
+          setCurrentBackground(setBackground)
+        )
       );
     };
   }, []);
@@ -45,7 +47,8 @@ const Navigation = (): JSX.Element => {
         <Image src={logo} alt="Chandra e João" className="m-auto select-none" />
       </a>
       <nav
-        className={`fixed top-14 right-20 hidden space-x-8 lg:block ${
+        id="main-nav"
+        className={`fixed top-14 right-20 hidden space-x-8 leading-none lg:block ${
           background === "dark"
             ? "text-white selection:bg-white selection:text-joanGreen-600"
             : ""
