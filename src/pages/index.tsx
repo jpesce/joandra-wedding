@@ -23,7 +23,24 @@ const Index: NextPage = () => {
       </Head>
 
       <Navigation />
-      <Hero />
+      <Hero
+        text={
+          <>
+            <span className="italic">Chandra & João</span> vão finalmente fazer
+            dessa união uma festa.
+          </>
+        }
+        actions={[
+          {
+            label: "Escolher presente",
+            href: "#lista-de-presentes",
+          },
+          {
+            label: "Confirmar presença",
+            href: "#confirmar-presenca",
+          },
+        ]}
+      />
       <section id="a-festa">
         <EventDetails />
       </section>
