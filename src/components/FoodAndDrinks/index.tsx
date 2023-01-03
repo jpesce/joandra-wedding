@@ -4,7 +4,6 @@ interface ItemsListProps {
   name: string;
   items: string[];
 }
-
 const ItemsList = ({ name, items }: ItemsListProps): JSX.Element => {
   return (
     <div className="space-y-2">
