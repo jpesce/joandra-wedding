@@ -42,12 +42,7 @@ const Navigation = (): JSX.Element => {
           animate ? "animate-wiggle" : ""
         }`}
       >
-        <Image
-          src={logo}
-          alt="Chandra e João"
-          className="m-auto select-none"
-          priority={true}
-        />
+        <Image src={logo} alt="Chandra e João" className="m-auto select-none" />
       </a>
       <nav
         className={`fixed top-14 right-20 hidden space-x-8 lg:block ${
