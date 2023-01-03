@@ -112,6 +112,10 @@ const PaymentInfo = ({
   );
 };
 
+const paymentLinkCache: PaymentLinkCache = {};
+interface PaymentLinkCache {
+  [key: string]: string;
+}
 interface PaymentModalProps {
   cart: Cart;
   setPaymentOpen: SetPaymentOpen;
@@ -144,23 +148,31 @@ const PaymentModal = ({
 
     const abortController = new AbortController();
     (async () => {
-      const response = await fetch("/api/paymentlink", {
-        signal: abortController.signal,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cart.map((item) => {
-            return {
-              title: item.name,
-              unit_price: giftList.find((gift) => gift.name === item.name)
-                ?.price,
-              quantity: item.quantity,
-            };
+      const cartCacheKey = JSON.stringify(cart);
+      const cartPaymentLinkCache = paymentLinkCache[cartCacheKey];
+      if (cartPaymentLinkCache) {
+        setPaymentLink(cartPaymentLinkCache);
+      } else {
+        const response = await fetch("/api/paymentlink", {
+          signal: abortController.signal,
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: cart.map((item) => {
+              return {
+                title: item.name,
+                unit_price: giftList.find((gift) => gift.name === item.name)
+                  ?.price,
+                quantity: item.quantity,
+              };
+            }),
           }),
-        }),
-      });
-      const responseText = await response.text();
-      setPaymentLink(responseText);
+        });
+        const cartCacheKey = JSON.stringify(cart);
+        const responseText = await response.text();
+        paymentLinkCache[cartCacheKey] = responseText;
+        setPaymentLink(responseText);
+      }
       setLoading(false);
 
       return () => abortController.abort();
