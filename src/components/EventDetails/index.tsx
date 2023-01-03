@@ -1,20 +1,40 @@
 import Image from "next/image";
 import eventPhoto from "../../../public/event.jpg";
 
-interface EventInformationProps {
+interface EventInformationItemProps {
   name: string;
   children: JSX.Element | string;
+  action?: {
+    label: string;
+    href: string;
+  };
 }
-const EventInformation = ({
+const EventInformationItem = ({
   name,
   children,
-}: EventInformationProps): JSX.Element => {
+  action,
+}: EventInformationItemProps): JSX.Element => {
   return (
     <div className="space-y-2">
       <dt className="font-condensed text-base uppercase tracking-widest">
         {name}
       </dt>
-      <dd className="max-w-[32rem] font-serif text-4xl">{children}</dd>
+      <dd className="max-w-[32rem] space-x-2 font-serif text-4xl">
+        <span>{children}</span>
+        {action && (
+          <>
+            {" "}
+            <a
+              className="nowrap relative top-[-2px] mt-2 block w-fit select-none whitespace-nowrap rounded-full border border-joanGreen-600 py-[0.25rem] px-[0.75rem] align-middle font-sans text-sm hover:bg-joanGreen-600 hover:text-white lg:mt-0 lg:inline"
+              href={action.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {action.label}
+            </a>
+          </>
+        )}
+      </dd>
     </div>
   );
 };
@@ -31,37 +51,29 @@ const EventDetails = (): JSX.Element => {
       </div>
       <div className="basis-1/2 px-8 py-10 text-joanGreen-600 lg:p-20">
         <dl className="flex flex-col space-y-10 lg:space-y-8">
-          <EventInformation name="Que dia?">
-            <>
-              <span className="mr-2">
-                Sábado, cinco de agosto de dois mil e vinte e três
-              </span>{" "}
-              <a
-                className="nowrap relative top-[-2px] mt-2 block w-fit select-none whitespace-nowrap rounded-full border border-joanGreen-600 py-[0.25rem] px-[0.75rem] align-middle font-sans text-sm hover:bg-joanGreen-600 hover:text-white lg:mt-0 lg:inline"
-                href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Google Calendar ＋
-              </a>
-            </>
-          </EventInformation>
-          <EventInformation name="Que horas?">Três da tarde</EventInformation>
-          <EventInformation name="Onde?">
-            <address className="not-italic">
-              <span className="mr-2">
-                Av. Professor Clóvis Salgado, 1485 — Bandeirantes, BH/MG
-              </span>{" "}
-              <a
-                className="nowrap relative top-[-2px] mt-2 block w-fit select-none whitespace-nowrap rounded-full border border-joanGreen-600 py-[0.25rem] px-[0.75rem] align-middle font-sans text-sm hover:bg-joanGreen-600 hover:text-white lg:mt-0 lg:inline"
-                href="https://goo.gl/maps/i56RHKW5uLg1YMg78"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Google Maps ↗
-              </a>
+          <EventInformationItem
+            name="Que dia?"
+            action={{
+              href: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com",
+              label: "Google Calendar ＋",
+            }}
+          >
+            Sábado, cinco de agosto de dois mil e vinte e três
+          </EventInformationItem>
+          <EventInformationItem name="Que horas?">
+            Três da tarde
+          </EventInformationItem>
+          <EventInformationItem
+            name="Onde?"
+            action={{
+              href: "https://goo.gl/maps/i56RHKW5uLg1YMg78",
+              label: "Google Maps ↗",
+            }}
+          >
+            <address className="inline not-italic">
+              Av. Professor Clóvis Salgado, 1485 — Bandeirantes, BH/MG
             </address>
-          </EventInformation>
+          </EventInformationItem>
         </dl>
       </div>
     </div>
