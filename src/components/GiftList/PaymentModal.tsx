@@ -3,6 +3,7 @@ import Image from "next/image";
 import { QrCodePix as PixQRCode } from "qrcode-pix";
 
 import IconX from "../../../public/icon-x.react.svg";
+import { useCart } from "./CartContext";
 
 import { cartTotalAmount } from "./cartUtils";
 import giftList from "./data";
@@ -16,10 +17,10 @@ const Loading = (): JSX.Element => {
   );
 };
 
-interface PaymentInfoProps {
+type PaymentInfoProps = {
   pixQRCode: { payload: string; base64Image: string };
   paymentLink: string;
-}
+};
 const PaymentInfo = ({
   pixQRCode,
   paymentLink,
@@ -54,6 +55,7 @@ const PaymentInfo = ({
             size={1}
             className="grow text-ellipsis rounded-l-full py-[0.375rem] pl-4 pr-2 text-sm focus:bg-joanGreen-50 focus-visible:ring-0 focus-visible:ring-offset-0"
             value={pixQRCode.payload}
+            readOnly
             onFocus={(event) => {
               navigator.clipboard.writeText(pixQRCode.payload);
               event.target.select();
@@ -90,6 +92,8 @@ const PaymentInfo = ({
             Se não puder pagar pelo Pix, você também pode{" "}
             <a
               href={paymentLink}
+              target="_blank"
+              rel="noreferrer"
               className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
             >
               clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
@@ -113,20 +117,18 @@ const PaymentInfo = ({
 };
 
 const paymentLinkCache: PaymentLinkCache = {};
-interface PaymentLinkCache {
+type PaymentLinkCache = {
   [key: string]: string;
-}
-interface PaymentModalProps {
-  cart: Cart;
+};
+type PaymentModalProps = {
   setPaymentOpen: SetPaymentOpen;
-}
-const PaymentModal = ({
-  cart,
-  setPaymentOpen,
-}: PaymentModalProps): JSX.Element => {
+};
+const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
   const [pixQRCode, setPixQRCode] = useState({ payload: "", base64Image: "" });
   const [paymentLink, setPaymentLink] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const { cart } = useCart();
 
   useEffect(() => {
     (async () => {
@@ -158,7 +160,7 @@ const PaymentModal = ({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items: cart.map((item) => {
+            items: cart.items.map((item) => {
               return {
                 title: item.name,
                 unit_price: giftList.find((gift) => gift.name === item.name)

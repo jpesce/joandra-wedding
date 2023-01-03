@@ -3,33 +3,42 @@ import Image from "next/image";
 import logo from "../../../public/chandra-e-joao.svg";
 
 type Background = "dark" | "light";
-type SetBackground = React.Dispatch<React.SetStateAction<Background>>;
-const setCurrentBackground = (setBackground: SetBackground) => {
-  const heroBottom = document
-    .getElementById("hero")
-    ?.getBoundingClientRect().bottom;
-  const mainNavBottom = document
-    .getElementById("main-nav")
-    ?.getBoundingClientRect().bottom;
-  if (heroBottom && mainNavBottom) {
-    heroBottom > mainNavBottom ? setBackground("dark") : setBackground("light");
-  }
-};
 
 const Navigation = (): JSX.Element => {
   const [background, setBackground] = useState<Background>("dark");
   const [animate, setAnimate] = useState(true);
 
+  const startAnimationListener = () => {
+    setAnimate(true);
+  };
+  const setCurrentBackgroundListener = () => {
+    const heroRectangle = document
+      .getElementById("hero")
+      ?.getBoundingClientRect();
+    const mainNavRectangle = document
+      .getElementById("main-nav")
+      ?.getBoundingClientRect();
+    if (heroRectangle && mainNavRectangle) {
+      heroRectangle.bottom > mainNavRectangle.bottom
+        ? setBackground("dark")
+        : setBackground("light");
+    }
+  };
+
   useEffect(() => {
-    setCurrentBackground(setBackground);
+    document.addEventListener("increaseItemQuantity", startAnimationListener);
+
+    setCurrentBackgroundListener();
     ["scroll", "resize"].forEach((event) =>
-      window.addEventListener(event, () => setCurrentBackground(setBackground))
+      window.addEventListener(event, setCurrentBackgroundListener)
     );
     return () => {
+      document.removeEventListener(
+        "increaseItemQuantity",
+        startAnimationListener
+      );
       ["scroll", "resize"].forEach((event) =>
-        window.removeEventListener(event, () =>
-          setCurrentBackground(setBackground)
-        )
+        window.removeEventListener(event, setCurrentBackgroundListener)
       );
     };
   }, []);

@@ -5,15 +5,16 @@ import IconTrash from "../../../public/icon-trash.react.svg";
 import IconPlus from "../../../public/icon-plus.react.svg";
 import IconMinus from "../../../public/icon-minus.react.svg";
 import IconX from "../../../public/icon-x.react.svg";
+import { useCart } from "./CartContext";
 
 import PaymentModal from "./PaymentModal";
 
 import { cartTotalAmount, itemTotalAmount } from "./cartUtils";
 import giftList from "./data";
 
-interface MinicartQuantityBadgeProps {
+type MinicartQuantityBadgeProps = {
   itemQuantity: number;
-}
+};
 const MinicartQuantityBadge = ({
   itemQuantity,
 }: MinicartQuantityBadgeProps): JSX.Element => {
@@ -24,11 +25,12 @@ const MinicartQuantityBadge = ({
   );
 };
 
-interface MinicartItemProps {
+type MinicartItemProps = {
   cartItem: CartItem;
-  updateCart: UpdateCart;
-}
-const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
+};
+const MinicartItem = ({ cartItem }: MinicartItemProps) => {
+  const { updateCart } = useCart();
+
   return (
     <div className="flex min-h-[35px] items-center selection:bg-joanGreen-600 selection:text-white md:min-h-[auto]">
       <button
@@ -69,66 +71,77 @@ const MinicartItem = ({ cartItem, updateCart }: MinicartItemProps) => {
   );
 };
 
-interface MinicartItemListProps {
-  updateCart: UpdateCart;
+type MinicartItemListProps = {
   setPaymentOpen: SetPaymentOpen;
-  cart: Cart;
-  setItemListOpen: SetItemListOpen;
-  open: boolean;
-}
+  setItemListOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  itemListOpen: boolean;
+};
 const MinicartItemList = ({
-  cart,
-  updateCart,
   setPaymentOpen,
   setItemListOpen,
-  open,
+  itemListOpen,
 }: MinicartItemListProps): JSX.Element => {
-  if (!open) return <></>;
+  const { cart } = useCart();
+
+  useEffect(() => {
+    const openHandler = () => {
+      setItemListOpen(true);
+    };
+
+    document.addEventListener("increaseItemQuantity", openHandler);
+    return () => {
+      document.removeEventListener("increaseItemQuantity", openHandler);
+    };
+  }, [setItemListOpen]);
+
+  useEffect(() => {
+    if (cart.items.length < 1) setItemListOpen(false);
+  }, [cart, setItemListOpen]);
+
   return (
     <>
-      <div
-        className="fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center bg-black bg-opacity-60 text-joanGreen-600 md:hidden"
-        onClick={() => setItemListOpen(false)}
-      ></div>
-
-      <div className="fixed bottom-0 left-0 right-0 z-40 animate-fade-in-up  shadow-xl md:static md:mb-4">
-        <div className="flex flex-col rounded-t-lg border border-joanGreen-600 bg-white text-sm uppercase text-joanGreen-600 md:w-[29rem] md:rounded-md">
-          <button
-            className="-right-[0.85rem] flex min-h-[2rem] min-w-[2rem] items-center justify-center self-end rounded-full border-joanGreen-600 bg-white p-[0.75rem] hover:bg-joanGreen-50 md:absolute md:-top-[0.85rem] md:border md:p-0"
+      {itemListOpen && (
+        <>
+          <div
+            className="fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center bg-black bg-opacity-60 text-joanGreen-600 md:hidden"
             onClick={() => setItemListOpen(false)}
-          >
-            <IconX className="h-[1.75rem] md:h-[0.875rem]" />
-          </button>
-          <div className="space-y-4 p-4 pt-0 md:pt-6">
-            <div className="space-y-2">
-              {cart.map((cartItem, index) => (
-                <MinicartItem
-                  key={index}
-                  cartItem={cartItem}
-                  updateCart={updateCart}
-                />
-              ))}
-            </div>
-            <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
-              <span className="mr-4">Total</span>
-              <span>R${cartTotalAmount(cart, giftList)}</span>
+          ></div>
+          <div className="fixed bottom-0 left-0 right-0 z-40 animate-fade-in-up  shadow-xl md:static md:mb-4">
+            <div className="flex flex-col rounded-t-lg border border-joanGreen-600 bg-white text-sm uppercase text-joanGreen-600 md:w-[29rem] md:rounded-md">
+              <button
+                className="-right-[0.85rem] flex min-h-[2rem] min-w-[2rem] items-center justify-center self-end rounded-full border-joanGreen-600 bg-white p-[0.75rem] hover:bg-joanGreen-50 md:absolute md:-top-[0.85rem] md:border md:p-0"
+                onClick={() => setItemListOpen(false)}
+              >
+                <IconX className="h-[1.75rem] md:h-[0.875rem]" />
+              </button>
+              <div className="space-y-4 p-4 pt-0 md:pt-6">
+                <div className="space-y-2">
+                  {cart.items.map((cartItem, index) => (
+                    <MinicartItem key={index} cartItem={cartItem} />
+                  ))}
+                </div>
+                <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
+                  <span className="mr-4">Total</span>
+                  <span>R${cartTotalAmount(cart, giftList)}</span>
+                </div>
+              </div>
+              <button
+                className="h-12 select-none border-t border-joanGreen-600 bg-joanGreen-600 text-base uppercase text-white hover:bg-joanGreen-550 md:rounded-b-sm"
+                onClick={() => setPaymentOpen(true)}
+              >
+                Pagar agora
+              </button>
             </div>
           </div>
-          <button
-            className="h-12 select-none border-t border-joanGreen-600 bg-joanGreen-600 text-base uppercase text-white hover:bg-joanGreen-550 md:rounded-b-sm"
-            onClick={() => setPaymentOpen(true)}
-          >
-            Pagar agora
-          </button>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };
 
-interface MinicartFloatingButtonProps {
+type MinicartFloatingButtonProps = {
   itemQuantity: number;
-}
+};
 const MinicartFloatingButton = ({
   itemQuantity,
 }: MinicartFloatingButtonProps): JSX.Element => {
@@ -142,23 +155,15 @@ const MinicartFloatingButton = ({
   );
 };
 
-interface MinicartProps {
-  updateCart: UpdateCart;
-  cart: Cart;
-  itemListOpen: boolean;
-  setItemListOpen: SetItemListOpen;
-}
-const Minicart = ({
-  cart,
-  updateCart,
-  itemListOpen,
-  setItemListOpen,
-}: MinicartProps): JSX.Element => {
-  const itemQuantity = cart.reduce(
+const Minicart = (): JSX.Element => {
+  const [itemListOpen, setItemListOpen] = useState(false);
+  const [paymentOpen, setPaymentOpen] = useState(false);
+
+  const { cart } = useCart();
+  const itemQuantity = cart.items.reduce(
     (accumulator: number, item: CartItem) => (accumulator += item.quantity),
     0
   );
-  const [paymentOpen, setPaymentOpen] = useState(false);
 
   useEffect(() => {
     if (paymentOpen) document.body.style.overflow = "hidden";
@@ -167,20 +172,14 @@ const Minicart = ({
 
   return (
     <>
-      {paymentOpen && (
-        <PaymentModal cart={cart} setPaymentOpen={setPaymentOpen} />
-      )}
+      {paymentOpen && <PaymentModal setPaymentOpen={setPaymentOpen} />}
       <div className="relative z-40">
         <div className="fixed bottom-4 right-4 flex flex-col items-end md:bottom-6 md:right-6 lg:bottom-12 lg:right-12">
-          {itemQuantity > 0 && (
-            <MinicartItemList
-              cart={cart}
-              updateCart={updateCart}
-              setPaymentOpen={setPaymentOpen}
-              setItemListOpen={setItemListOpen}
-              open={itemListOpen}
-            />
-          )}
+          <MinicartItemList
+            setPaymentOpen={setPaymentOpen}
+            setItemListOpen={setItemListOpen}
+            itemListOpen={itemListOpen}
+          />
           {itemQuantity > 0 ? (
             <button
               className="rounded-full"

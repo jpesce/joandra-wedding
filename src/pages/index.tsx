@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import EventDetails from "../components/EventDetails";
 import Greeting from "../components/Greeting";
 import FoodAndDrinks from "../components/FoodAndDrinks";
+import { CartProvider } from "../components/GiftList/CartContext";
 import GiftList from "../components/GiftList";
 import RSVP from "../components/RSVP";
 import FAQ from "../components/FAQ";
@@ -46,9 +47,11 @@ const Index: NextPage = () => {
       </section>
       <Greeting />
       <FoodAndDrinks />
-      <section id="lista-de-presentes">
-        <GiftList />
-      </section>
+      <CartProvider>
+        <section id="lista-de-presentes">
+          <GiftList />
+        </section>
+      </CartProvider>
       <section id="confirmar-presenca">
         <RSVP />
       </section>
