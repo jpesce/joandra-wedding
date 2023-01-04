@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
@@ -12,15 +13,31 @@ import RSVP from "../components/RSVP";
 import FAQ from "../components/FAQ";
 
 const Index: NextPage = () => {
+  const path = useRouter().pathname;
+
+  const meta = {
+    title: "Chandra e João",
+    description: "Chandra & João vão finalmente fazer dessa união uma festa!",
+  };
+
   return (
     <>
       <Head>
-        <title>Chandra e João</title>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Chandra e João" />
+        <meta property="og:type" content="website" />
         <meta
-          name="description"
-          content="Chandra & João vão finalmente fazer dessa união uma festa"
+          property="og:url"
+          content={`https://joandra-wedding.vercel.app${path}`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content="https://joandra-wedding.vercel.app/og-image.jpg"
+        />
       </Head>
 
       <Navigation />
