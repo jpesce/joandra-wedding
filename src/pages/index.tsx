@@ -30,10 +30,13 @@ const Index: NextPage = () => {
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Chandra e João" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://chandraejoao.com${path}`} />
+        <meta
+          property="og:url"
+          content={`https://www.chandraejoao.com${path}`}
+        />
         <meta
           property="og:image"
-          content="https://chandraejoao.com/og-image.jpg"
+          content="https://www.chandraejoao.com/og-image.jpg"
         />
       </Head>
 
