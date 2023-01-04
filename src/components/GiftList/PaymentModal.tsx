@@ -115,6 +115,24 @@ const PaymentInfo = ({
   );
 };
 
+type PixQRCode = (
+  amount: number
+) => Promise<{ payload: string; base64Image: string }>;
+const getPixQRCode: PixQRCode = async (amount) => {
+  const pixQRCode = PixQRCode({
+    version: "01",
+    key: "08974515628",
+    name: "João Paulo Barros Cotta Pesce",
+    city: "BELO HORIZONTE",
+    message: "🎁 Presente de casamento Chandra & João",
+    value: amount,
+  });
+  const base64Image = await pixQRCode.base64();
+  const payload = pixQRCode.payload();
+
+  return { payload, base64Image };
+};
+
 const paymentLinkCache: PaymentLinkCache = {};
 type PaymentLinkCache = {
   [key: string]: string;
@@ -131,26 +149,15 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      const pixQRCodeInfo = PixQRCode({
-        version: "01",
-        key: "08974515628",
-        name: "João Paulo Barros Cotta Pesce",
-        city: "BELO HORIZONTE",
-        message: "🎁 Presente de casamento Chandra & João",
-        value: cartTotalAmount,
-      });
-      const pixQRCodeBase64Image = await pixQRCodeInfo.base64();
-
-      setPixQRCode({
-        payload: pixQRCodeInfo.payload(),
-        base64Image: pixQRCodeBase64Image,
-      });
+      const { payload, base64Image } = await getPixQRCode(cartTotalAmount);
+      setPixQRCode({ payload, base64Image });
     })();
 
     const abortController = new AbortController();
     (async () => {
       const cartCacheKey = JSON.stringify(cart);
       const cartPaymentLinkCache = paymentLinkCache[cartCacheKey];
+
       if (cartPaymentLinkCache) {
         setPaymentLink(cartPaymentLinkCache);
       } else {
@@ -171,9 +178,12 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
         });
         const cartCacheKey = JSON.stringify(cart);
         const responseText = await response.text();
+
         paymentLinkCache[cartCacheKey] = responseText;
+
         setPaymentLink(responseText);
       }
+
       setLoading(false);
 
       return () => abortController.abort();

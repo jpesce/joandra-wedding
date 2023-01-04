@@ -1,14 +1,14 @@
 import Image from "next/image";
 import eventPhoto from "../../../public/event.jpg";
 
-interface EventInformationItemProps {
+type EventInformationItemProps = {
   name: string;
   children: JSX.Element | string;
   action?: {
     label: string;
     href: string;
   };
-}
+};
 const EventInformationItem = ({
   name,
   children,
