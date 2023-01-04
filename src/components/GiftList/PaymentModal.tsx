@@ -5,7 +5,6 @@ import { QrCodePix as PixQRCode } from "qrcode-pix";
 import IconX from "../../../public/icon-x.react.svg";
 import { useCart } from "./CartContext";
 
-import { cartTotalAmount } from "./cartUtils";
 import giftList from "./data";
 
 const Loading = (): JSX.Element => {
@@ -128,7 +127,7 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
   const [paymentLink, setPaymentLink] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const { cart } = useCart();
+  const { cart, cartTotalAmount } = useCart();
 
   useEffect(() => {
     (async () => {
@@ -138,7 +137,7 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
         name: "João Paulo Barros Cotta Pesce",
         city: "BELO HORIZONTE",
         message: "🎁 Presente de casamento Chandra & João",
-        value: cartTotalAmount(cart, giftList),
+        value: cartTotalAmount,
       });
       const pixQRCodeBase64Image = await pixQRCodeInfo.base64();
 
@@ -179,7 +178,7 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
 
       return () => abortController.abort();
     })();
-  }, [cart]);
+  }, [cart, cartTotalAmount]);
 
   return (
     <div

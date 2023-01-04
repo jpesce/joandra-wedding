@@ -1,9 +1,20 @@
 import type { Dispatch } from "react";
-import { createContext, useReducer, useContext, useEffect } from "react";
+import {
+  createContext,
+  useReducer,
+  useContext,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
+
+import giftList from "./data";
 
 const CartContext = createContext({
   cart: {} as Cart,
   updateCart: {} as Dispatch<CartReducerAction>,
+  cartTotalAmount: 0,
+  itemTotalAmount: {} as ItemTotalAmount,
 });
 
 const cartReducer: CartReducer = (state, action): Cart => {
@@ -53,6 +64,7 @@ const cartReducer: CartReducer = (state, action): Cart => {
   }
 };
 
+type ItemTotalAmount = (cart: CartItem) => number;
 type CartProviderProps = {
   children: React.ReactNode;
 };
@@ -61,6 +73,24 @@ const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
     items: [],
   });
 
+  const cartTotalAmount = useMemo(() => {
+    return cart.items.reduce((total, cartItem) => {
+      const gift = giftList.find((gift) => gift.name === cartItem.name);
+      if (cartItem.price) return total + cartItem.price * cartItem.quantity;
+      if (gift) return total + gift.price * cartItem.quantity;
+
+      return total;
+    }, 0);
+  }, [cart]);
+
+  const itemTotalAmount: ItemTotalAmount = useCallback((cartItem) => {
+    const giftListItem = giftList.find(
+      (giftListItem) => giftListItem.name === cartItem.name
+    );
+
+    return giftListItem ? cartItem.quantity * giftListItem.price : 0;
+  }, []);
+
   useEffect(() => {
     if (cart?.lastAction?.type === "increaseItemQuantity") {
       document.dispatchEvent(new CustomEvent("increaseItemQuantity"));
@@ -68,7 +98,9 @@ const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, updateCart }}>
+    <CartContext.Provider
+      value={{ cart, updateCart, cartTotalAmount, itemTotalAmount }}
+    >
       {children}
     </CartContext.Provider>
   );

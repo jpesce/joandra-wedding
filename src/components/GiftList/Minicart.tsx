@@ -9,9 +9,6 @@ import { useCart } from "./CartContext";
 
 import PaymentModal from "./PaymentModal";
 
-import { cartTotalAmount, itemTotalAmount } from "./cartUtils";
-import giftList from "./data";
-
 type MinicartQuantityBadgeProps = {
   itemQuantity: number;
 };
@@ -29,7 +26,7 @@ type MinicartItemProps = {
   cartItem: CartItem;
 };
 const MinicartItem = ({ cartItem }: MinicartItemProps) => {
-  const { updateCart } = useCart();
+  const { updateCart, itemTotalAmount } = useCart();
 
   return (
     <div className="flex min-h-[35px] items-center selection:bg-joanGreen-600 selection:text-white md:min-h-[auto]">
@@ -65,7 +62,7 @@ const MinicartItem = ({ cartItem }: MinicartItemProps) => {
         R$
         {cartItem.price
           ? cartItem.price * cartItem.quantity
-          : itemTotalAmount(cartItem, giftList)}
+          : itemTotalAmount(cartItem)}
       </div>
     </div>
   );
@@ -81,7 +78,7 @@ const MinicartItemList = ({
   setItemListOpen,
   itemListOpen,
 }: MinicartItemListProps): JSX.Element => {
-  const { cart } = useCart();
+  const { cart, cartTotalAmount } = useCart();
 
   useEffect(() => {
     const openHandler = () => {
@@ -122,7 +119,7 @@ const MinicartItemList = ({
                 </div>
                 <div className="border-t border-joanGreen-600 pt-2 text-right text-black selection:bg-black selection:text-white">
                   <span className="mr-4">Total</span>
-                  <span>R${cartTotalAmount(cart, giftList)}</span>
+                  <span>R${cartTotalAmount}</span>
                 </div>
               </div>
               <button
