@@ -15,9 +15,14 @@ const Gift = ({ name, price, image }: GiftProps): JSX.Element => {
   const { updateCart } = useCart();
 
   return (
-    <div className="mr-[-1px] mt-[-1px] border-y border-joanGreen-600 p-4 text-sm uppercase md:border">
+    <div
+      onClick={() => {
+        updateCart({ type: "increaseItemQuantity", item: name });
+      }}
+      className="group mr-[-1px] mt-[-1px] cursor-pointer border-y border-joanGreen-600 bg-white p-4 text-sm uppercase md:border"
+    >
       <div className="flex">
-        <div className="flex-grow">{name}</div>
+        <div className="flex-grow text-left">{name}</div>
         <div>R${price}</div>
       </div>
       <div className="relative mt-2 pb-[125%]">
@@ -30,10 +35,11 @@ const Gift = ({ name, price, image }: GiftProps): JSX.Element => {
         </div>
       </div>
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           updateCart({ type: "increaseItemQuantity", item: name });
         }}
-        className="mt-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-joanGreen-600 px-5 uppercase text-joanGreen-600 transition hover:bg-joanGreen-600 hover:text-white"
+        className="mt-4 inline-flex min-h-[2.5rem] w-full select-none items-center justify-center rounded-full border border-joanGreen-600 px-5 uppercase text-joanGreen-600 transition group-hover:bg-joanGreen-600 group-hover:text-white"
       >
         Presentear
       </button>
