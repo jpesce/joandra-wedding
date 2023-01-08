@@ -19,7 +19,6 @@ const CartContext = createContext({
 
 const cartReducer: CartReducer = (state, action): Cart => {
   const newState = JSON.parse(JSON.stringify(state)); // Deep clone the state array
-  newState.lastAction = action;
 
   const indexOfItemInCart = newState.items.findIndex(
     (itemInCart: CartItem) => itemInCart.name === action.item
@@ -31,6 +30,7 @@ const cartReducer: CartReducer = (state, action): Cart => {
 
   switch (action.type) {
     case "increaseItemQuantity":
+      newState.lastAction = action;
       if (isItemInCart) {
         newState.items[indexOfItemInCart].quantity += 1;
         if (action.price)
@@ -47,12 +47,14 @@ const cartReducer: CartReducer = (state, action): Cart => {
 
       return newState;
     case "removeItem":
+      newState.lastAction = action;
       if (isItemInCart && cartHasOneTypeOfItem) newState.items.pop();
       if (isItemInCart && !cartHasOneTypeOfItem)
         newState.items.splice(indexOfItemInCart, 1);
 
       return newState;
     case "decreaseItemQuantity":
+      newState.lastAction = action;
       if (!isLastOfItem) newState[indexOfItemInCart].quantity -= 1;
       if (isLastOfItem && cartHasOneTypeOfItem) newState.items.pop();
       if (isLastOfItem && !cartHasOneTypeOfItem)
@@ -66,12 +68,23 @@ const cartReducer: CartReducer = (state, action): Cart => {
 
 type ItemTotalAmount = (cart: CartItem) => number;
 type CartProviderProps = {
+  cartFromServer?: Cart;
   children: React.ReactNode;
 };
-const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
-  const [cart, updateCart] = useReducer<CartReducer>(cartReducer, {
-    items: [],
-  });
+const CartProvider = ({
+  cartFromServer,
+  children,
+}: CartProviderProps): JSX.Element => {
+  const [cart, updateCart] = useReducer<CartReducer>(
+    cartReducer,
+    cartFromServer || { items: [] }
+  );
+
+  useEffect(() => {
+    // Since we only have one cookie, it's easy to maniputate it directly. If we
+    // use more cookies, we should probably use something more robust
+    document.cookie = `cart=${JSON.stringify(cart)}`;
+  }, [cart]);
 
   const cartTotalAmount = useMemo(() => {
     return cart.items.reduce((total, cartItem) => {
