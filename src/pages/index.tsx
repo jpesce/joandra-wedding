@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -12,23 +12,7 @@ import GiftList from "../components/GiftList";
 import RSVP from "../components/RSVP";
 import FAQ from "../components/FAQ";
 
-const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies = context.req.headers.cookie;
-  const cartCookie = cookies
-    ?.split("; ")
-    .find((item) => item.startsWith("cart="))
-    ?.split("=")[1];
-  const cart = cartCookie && JSON.parse(cartCookie);
-
-  if (cart) {
-    return {
-      props: { cart },
-    };
-  }
-  return { props: {} };
-};
-
-const Index: NextPage<{ cart?: Cart }> = ({ cart }) => {
+const Index: NextPage = () => {
   const path = useRouter().pathname;
 
   const meta = {
@@ -80,7 +64,7 @@ const Index: NextPage<{ cart?: Cart }> = ({ cart }) => {
       </section>
       <Greeting />
       <FoodAndDrinks />
-      <CartProvider cartFromServer={cart}>
+      <CartProvider>
         <section id="lista-de-presentes">
           <GiftList />
         </section>
@@ -95,5 +79,4 @@ const Index: NextPage<{ cart?: Cart }> = ({ cart }) => {
   );
 };
 
-export { getServerSideProps };
 export default Index;

@@ -15,18 +15,13 @@ type CartItem = {
   name: string;
   quantity: number;
   price?: number;
-  lastAction?: string;
 };
 
-type CartActionType =
-  | "increaseItemQuantity"
-  | "decreaseItemQuantity"
-  | "removeItem";
-type CartReducerAction = {
-  type: CartActionType;
-  item: string;
-  price?: number;
-};
+type CartReducerAction =
+  | { type: "setCart"; cart: Cart }
+  | { type: "increaseItemQuantity"; item: string; price?: number }
+  | { type: "decreaseItemQuantity"; item: string }
+  | { type: "removeItem"; item: string };
 type CartReducer = React.Reducer<Cart, CartReducerAction>;
 type UpdateCart = React.Dispatch<React.ReducerAction<CartReducer>>;
 

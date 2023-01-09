@@ -6,6 +6,7 @@ import {
   useEffect,
   useMemo,
   useCallback,
+  useRef,
 } from "react";
 
 import giftList from "./data";
@@ -20,15 +21,24 @@ const CartContext = createContext({
 const cartReducer: CartReducer = (state, action): Cart => {
   const newState = JSON.parse(JSON.stringify(state)); // Deep clone the state array
 
-  const indexOfItemInCart = newState.items.findIndex(
-    (itemInCart: CartItem) => itemInCart.name === action.item
-  );
-  const isItemInCart = indexOfItemInCart !== -1;
+  const indexOfItemInCart =
+    (action.type === "increaseItemQuantity" ||
+      action.type === "decreaseItemQuantity" ||
+      action.type === "removeItem") &&
+    newState.items.findIndex(
+      (itemInCart: CartItem) => itemInCart.name === action.item
+    );
+  const isItemInCart = indexOfItemInCart !== false && indexOfItemInCart > -1;
   const isLastOfItem =
     isItemInCart && newState.items[indexOfItemInCart].quantity <= 1;
   const cartHasOneTypeOfItem = newState.items.length <= 1;
 
   switch (action.type) {
+    case "setCart":
+      newState.items = action.cart.items;
+      newState.lastAction = action;
+
+      return newState;
     case "increaseItemQuantity":
       newState.lastAction = action;
       if (isItemInCart) {
@@ -41,7 +51,6 @@ const cartReducer: CartReducer = (state, action): Cart => {
           name: action.item,
           quantity: 1,
           price: action.price,
-          lastAction: "a",
         });
       }
 
@@ -71,14 +80,25 @@ type CartProviderProps = {
   cartFromServer?: Cart;
   children: React.ReactNode;
 };
-const CartProvider = ({
-  cartFromServer,
-  children,
-}: CartProviderProps): JSX.Element => {
-  const [cart, updateCart] = useReducer<CartReducer>(
-    cartReducer,
-    cartFromServer || { items: [] }
-  );
+const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
+  const [cart, updateCart] = useReducer<CartReducer>(cartReducer, {
+    items: [],
+  });
+  // Store if it's the first render so things that should be run only on first
+  // render work with reactStrictMode
+  const isFirstRun = useRef(true);
+
+  useEffect(() => {
+    const cookies = document.cookie;
+    const cartCookie = cookies
+      ?.split("; ")
+      .find((item) => item.startsWith("cart="))
+      ?.split("=")[1];
+    const cart = cartCookie && JSON.parse(cartCookie);
+
+    if (isFirstRun.current && cart) updateCart({ type: "setCart", cart: cart });
+    isFirstRun.current = false;
+  }, []);
 
   useEffect(() => {
     // Since we only have one cookie, it's easy to maniputate it directly. If we
