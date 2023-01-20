@@ -52,7 +52,7 @@ const EventDetails = (): JSX.Element => {
       </div>
       <div className="basis-1/2 px-8 py-10 text-joanGreen-600 lg:p-20">
         <dl className="flex flex-col space-y-10 lg:space-y-8">
-          <EventInformationItem
+                    <EventInformationItem
             name="Que dia?"
             action={{
               href: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com",
@@ -63,7 +63,7 @@ const EventDetails = (): JSX.Element => {
             Sábado, cinco de agosto de dois mil e vinte e três
           </EventInformationItem>
           <EventInformationItem name="Que horas?">
-            Três da tarde
+            Duas e meia da tarde
           </EventInformationItem>
           <EventInformationItem
             name="Onde?"
