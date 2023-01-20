@@ -46,7 +46,7 @@ const EventDetails = (): JSX.Element => {
               </a>
             </>
           </EventInformation>
-          <EventInformation name="Que horas?">Três da tarde</EventInformation>
+          <EventInformation name="Que horas?">Duas e meia da tarde</EventInformation>
           <EventInformation name="Onde?">
             <address className="not-italic">
               <span className="mr-2">

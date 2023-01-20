@@ -2,7 +2,7 @@ const questionList: QuestionList = [
   {
     question: "Que hora começa de verdade?",
     answer:
-      "Vamos ter um momento no início para brindar, ficaríamos muito felizes se todos vocês estivessem lá nessa hora. Então ela começa de verdade às 15h, mas se organize para chegar 14h30, beber um café e se aclimatar logo cedo.",
+      "Vamos ter um momento no início para brindar, ficaríamos muito felizes se todos vocês estivessem lá nessa hora. Então se organize para chegar 14h30 e se aclimatar logo cedo.",
   },
   {
     question: "Posso levar alguém que não está na lista? Por favorzinho?",

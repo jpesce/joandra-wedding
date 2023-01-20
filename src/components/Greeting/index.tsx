@@ -9,11 +9,11 @@ const Intro = (): JSX.Element => {
           essa festa para as pessoas mais especiais ao nosso redor. Pensamos e
           preparamos um momento pra traduzir a gente nesse dia, e é com muita 
           alegria mesmo que a gente te chama pra fazer parte dele. Como 
-          qualquer festa nossa, espere um mesa de antepastos recheada, no 
+          qualquer festa nossa, espere uma mesa de antepastos recheada, no 
           melhor esquema cada um por si, com um pouco de tudo. Bebidas, drinks
-          especiais, muita música e um jantar pra fechar com chave de ouro. Se
-          vista pra esse dia único e venha pronto pra aproveitar muito do nosso
-          lado!
+          do nosso bar preferido em BH, muita música e um jantar pra fechar com
+          chave de ouro. Se vista pra esse dia único e venha pronto pra
+          aproveitar muito do nosso lado!
         </p>
         <Signatures className="m-auto h-12 max-w-full text-black lg:h-14" />
       </div>
