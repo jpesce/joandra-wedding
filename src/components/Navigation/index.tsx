@@ -3,31 +3,42 @@ import Image from "next/image";
 import logo from "../../../public/chandra-e-joao.svg";
 
 type Background = "dark" | "light";
-type SetBackground = React.Dispatch<React.SetStateAction<Background>>;
-
-const navigationScrollListener = (setBackground: SetBackground) => {
-  window.scrollY < window.innerHeight - 63
-    ? setBackground("dark")
-    : setBackground("light");
-};
 
 const Navigation = (): JSX.Element => {
   const [background, setBackground] = useState<Background>("dark");
   const [animate, setAnimate] = useState(true);
 
+  const startAnimationListener = () => {
+    setAnimate(true);
+  };
+  const setCurrentBackgroundListener = () => {
+    const heroRectangle = document
+      .getElementById("hero")
+      ?.getBoundingClientRect();
+    const mainNavRectangle = document
+      .getElementById("main-nav")
+      ?.getBoundingClientRect();
+    if (heroRectangle && mainNavRectangle) {
+      heroRectangle.bottom > mainNavRectangle.bottom
+        ? setBackground("dark")
+        : setBackground("light");
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener("scroll", () =>
-      navigationScrollListener(setBackground)
-    );
-    window.addEventListener("resize", () =>
-      navigationScrollListener(setBackground)
+    document.addEventListener("increaseItemQuantity", startAnimationListener);
+
+    setCurrentBackgroundListener();
+    ["scroll", "resize"].forEach((event) =>
+      window.addEventListener(event, setCurrentBackgroundListener)
     );
     return () => {
-      window.removeEventListener("scroll", () =>
-        navigationScrollListener(setBackground)
+      document.removeEventListener(
+        "increaseItemQuantity",
+        startAnimationListener
       );
-      window.removeEventListener("resize", () =>
-        navigationScrollListener(setBackground)
+      ["scroll", "resize"].forEach((event) =>
+        window.removeEventListener(event, setCurrentBackgroundListener)
       );
     };
   }, []);
@@ -42,15 +53,11 @@ const Navigation = (): JSX.Element => {
           animate ? "animate-wiggle" : ""
         }`}
       >
-        <Image
-          src={logo}
-          alt="Chandra e João"
-          className="m-auto select-none"
-          priority={true}
-        />
+        <Image src={logo} alt="Chandra e João" className="m-auto select-none" />
       </a>
       <nav
-        className={`fixed top-14 right-20 hidden space-x-8 lg:block ${
+        id="main-nav"
+        className={`fixed top-14 right-20 hidden space-x-8 leading-none lg:block ${
           background === "dark"
             ? "text-white selection:bg-white selection:text-joanGreen-600"
             : ""

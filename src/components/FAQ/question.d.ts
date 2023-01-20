@@ -1,6 +1,6 @@
 type QuestionList = Question[];
 
-interface Question {
+type Question = {
   question: string;
   answer: string;
-}
+};

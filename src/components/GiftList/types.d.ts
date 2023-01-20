@@ -1,30 +1,29 @@
 type GiftList = GiftListItem[];
 
-interface GiftListItem {
+type GiftListItem = {
   name: string;
   price: number;
   image: string;
-}
+};
 
-type Cart = CartItem[];
+type Cart = {
+  lastAction?: CartReducerAction;
+  items: CartItem[];
+};
 
-interface CartItem {
+type CartItem = {
   name: string;
   quantity: number;
   price?: number;
-}
+};
 
+type CartReducerAction =
+  | { type: "setCart"; cart: Cart }
+  | { type: "increaseItemQuantity"; item: string; price?: number }
+  | { type: "decreaseItemQuantity"; item: string }
+  | { type: "removeItem"; item: string };
+type CartReducer = React.Reducer<Cart, CartReducerAction>;
 type UpdateCart = React.Dispatch<React.ReducerAction<CartReducer>>;
-type SetItemListOpen = React.Dispatch<React.SetStateAction<boolean>>;
-
-interface CartReducerAction {
-  type: "increaseItemQuantity" | "decreaseItemQuantity" | "removeItem";
-  item: string;
-  price?: number;
-}
-interface CartReducer extends React.Reducer<Cart, CartReducerAction> {
-  (state: Cart, action: CartReducerAction): Cart;
-}
 
 type SetPaymentOpen = React.Dispatch<React.SetStateAction<boolean>>;
 

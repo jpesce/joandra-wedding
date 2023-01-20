@@ -1,10 +1,9 @@
 import menu from "./data";
 
-interface ItemsListProps {
+type ItemsListProps = {
   name: string;
   items: string[];
-}
-
+};
 const ItemsList = ({ name, items }: ItemsListProps): JSX.Element => {
   return (
     <div className="space-y-2">

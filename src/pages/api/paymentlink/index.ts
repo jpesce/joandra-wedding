@@ -18,6 +18,7 @@ const paymentHandler = async (
 
   const preference = {
     ...request.body,
+    statement_descriptor: "CasamentoChandraEJoao",
     payment_methods: {
       excluded_payment_types: [{ id: "ticket" }, { id: "debit_card" }],
     },

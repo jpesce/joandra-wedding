@@ -1,10 +1,10 @@
 import IconPlus from "../../../public/icon-plus.react.svg";
 import questionList from "./data";
 
-interface QuestionProps {
+type QuestionProps = {
   question: string;
   answer: string;
-}
+};
 const Question = ({ question, answer }: QuestionProps): JSX.Element => {
   return (
     <div className="border-t border-joanGreen-600">

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { QrCodePix as PixQRCode } from "qrcode-pix";
 
 import IconX from "../../../public/icon-x.react.svg";
+import { useCart } from "./CartContext";
 
-import { cartTotalAmount } from "./cartUtils";
 import giftList from "./data";
 
 const Loading = (): JSX.Element => {
@@ -16,10 +16,10 @@ const Loading = (): JSX.Element => {
   );
 };
 
-interface PaymentInfoProps {
+type PaymentInfoProps = {
   pixQRCode: { payload: string; base64Image: string };
   paymentLink: string;
-}
+};
 const PaymentInfo = ({
   pixQRCode,
   paymentLink,
@@ -54,6 +54,7 @@ const PaymentInfo = ({
             size={1}
             className="grow text-ellipsis rounded-l-full py-[0.375rem] pl-4 pr-2 text-sm focus:bg-joanGreen-50 focus-visible:ring-0 focus-visible:ring-offset-0"
             value={pixQRCode.payload}
+            readOnly
             onFocus={(event) => {
               navigator.clipboard.writeText(pixQRCode.payload);
               event.target.select();
@@ -90,9 +91,9 @@ const PaymentInfo = ({
             Se não puder pagar pelo Pix, você também pode{" "}
             <a
               href={paymentLink}
-              className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
               target="_blank"
               rel="noreferrer"
+              className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
             >
               clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
             </a>
@@ -105,8 +106,6 @@ const PaymentInfo = ({
           <a
             href={paymentLink}
             className="underline underline-offset-[0.25em] hover:text-joanGreen-550"
-            target="_blank"
-            rel="noreferrer"
           >
             clicar aqui e pagar com cartão de crédito pelo Mercado Pago.
           </a>
@@ -116,60 +115,80 @@ const PaymentInfo = ({
   );
 };
 
-interface PaymentModalProps {
-  cart: Cart;
+type PixQRCode = (
+  amount: number
+) => Promise<{ payload: string; base64Image: string }>;
+const getPixQRCode: PixQRCode = async (amount) => {
+  const pixQRCode = PixQRCode({
+    version: "01",
+    key: "08974515628",
+    name: "João Paulo Barros Cotta Pesce",
+    city: "BELO HORIZONTE",
+    message: "🎁 Presente de casamento Chandra & João",
+    value: amount,
+  });
+  const base64Image = await pixQRCode.base64();
+  const payload = pixQRCode.payload();
+
+  return { payload, base64Image };
+};
+
+const paymentLinkCache: PaymentLinkCache = {};
+type PaymentLinkCache = {
+  [key: string]: string;
+};
+type PaymentModalProps = {
   setPaymentOpen: SetPaymentOpen;
-}
-const PaymentModal = ({
-  cart,
-  setPaymentOpen,
-}: PaymentModalProps): JSX.Element => {
+};
+const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
   const [pixQRCode, setPixQRCode] = useState({ payload: "", base64Image: "" });
   const [paymentLink, setPaymentLink] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const { cart, cartTotalAmount } = useCart();
+
   useEffect(() => {
     (async () => {
-      const pixQRCodeInfo = PixQRCode({
-        version: "01",
-        key: "08974515628",
-        name: "João Paulo Barros Cotta Pesce",
-        city: "BELO HORIZONTE",
-        message: "🎁 Presente de casamento Chandra & João",
-        value: cartTotalAmount(cart, giftList),
-      });
-      const pixQRCodeBase64Image = await pixQRCodeInfo.base64();
-
-      setPixQRCode({
-        payload: pixQRCodeInfo.payload(),
-        base64Image: pixQRCodeBase64Image,
-      });
+      const { payload, base64Image } = await getPixQRCode(cartTotalAmount);
+      setPixQRCode({ payload, base64Image });
     })();
 
     const abortController = new AbortController();
     (async () => {
-      const response = await fetch("/api/paymentlink", {
-        signal: abortController.signal,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cart.map((item) => {
-            return {
-              title: item.name,
-              unit_price: giftList.find((gift) => gift.name === item.name)
-                ?.price,
-              quantity: item.quantity,
-            };
+      const cartCacheKey = JSON.stringify(cart);
+      const cartPaymentLinkCache = paymentLinkCache[cartCacheKey];
+
+      if (cartPaymentLinkCache) {
+        setPaymentLink(cartPaymentLinkCache);
+      } else {
+        const response = await fetch("/api/paymentlink", {
+          signal: abortController.signal,
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: cart.items.map((item) => {
+              return {
+                title: item.name,
+                unit_price: giftList.find((gift) => gift.name === item.name)
+                  ?.price,
+                quantity: item.quantity,
+              };
+            }),
           }),
-        }),
-      });
-      const responseText = await response.text();
-      setPaymentLink(responseText);
+        });
+        const cartCacheKey = JSON.stringify(cart);
+        const responseText = await response.text();
+
+        paymentLinkCache[cartCacheKey] = responseText;
+
+        setPaymentLink(responseText);
+      }
+
       setLoading(false);
 
       return () => abortController.abort();
     })();
-  }, [cart]);
+  }, [cart, cartTotalAmount]);
 
   return (
     <div

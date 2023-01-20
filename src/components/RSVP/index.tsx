@@ -3,9 +3,10 @@ import Image from "next/image";
 import catsHandshaking from "../../../public/cats-handshaking.jpg";
 import IconArrowRight from "../../../public/icon-arrow-right.react.svg";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
-}
+};
+
 const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
   return (
     <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
@@ -23,10 +24,9 @@ const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
   );
 };
 
-interface TextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
-}
+};
 const TextArea = ({
   label,
   ...htmlTextAreaProps
@@ -57,28 +57,28 @@ const ConfirmationMessage = (): JSX.Element => {
   );
 };
 
-interface RSVPFormElements extends HTMLFormControlsCollection {
+type RSVPFormElements = HTMLFormControlsCollection & {
   name: HTMLInputElement;
   numberOfPersons: HTMLInputElement;
   message: HTMLTextAreaElement;
-}
-interface HTMLRSVPFormElement extends HTMLFormElement {
+};
+type HTMLRSVPFormElement = HTMLFormElement & {
   readonly elements: RSVPFormElements;
-}
+};
+type FormData = {
+  name: string;
+  "number-of-persons": string;
+  message?: string;
+};
+type ZapierResponse = {
+  status: string;
+};
 type RSVPFormProps = {
   setRSVPState: React.Dispatch<React.SetStateAction<RSVPState>>;
 };
 const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  interface FormData {
-    name: string;
-    "number-of-persons": string;
-    message?: string;
-  }
-  interface ZapierResponse {
-    status: string;
-  }
   const submitForm = async (
     url: string,
     formData: FormData

@@ -1,20 +1,41 @@
 import Image from "next/image";
 import eventPhoto from "../../../public/event.jpg";
 
-interface EventInformationProps {
+type EventInformationItemProps = {
   name: string;
   children: JSX.Element | string;
-}
-const EventInformation = ({
+  action?: {
+    label: string;
+    href: string;
+    className?: string;
+  };
+};
+const EventInformationItem = ({
   name,
   children,
-}: EventInformationProps): JSX.Element => {
+  action,
+}: EventInformationItemProps): JSX.Element => {
   return (
     <div className="space-y-2">
       <dt className="font-condensed text-base uppercase tracking-widest">
         {name}
       </dt>
-      <dd className="max-w-[32rem] font-serif text-4xl">{children}</dd>
+      <dd className="max-w-[32rem] font-serif text-4xl lg:space-x-2">
+        <span>{children}</span>
+        {action && (
+          <>
+            {" "}
+            <a
+              className={`nowrap relative top-[-2px] mt-2 block w-fit select-none whitespace-nowrap rounded-full border border-joanGreen-600 py-[0.25rem] px-[0.75rem] align-middle font-sans text-sm hover:bg-joanGreen-600 hover:text-white lg:mt-0 lg:inline ${action.className}`}
+              href={action.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {action.label}
+            </a>
+          </>
+        )}
+      </dd>
     </div>
   );
 };
@@ -61,7 +82,7 @@ const EventDetails = (): JSX.Element => {
                 Google Maps ↗
               </a>
             </address>
-          </EventInformation>
+          </EventInformationItem>
         </dl>
       </div>
     </div>
