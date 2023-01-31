@@ -50,9 +50,9 @@ const EventDetails = (): JSX.Element => {
           className="h-full w-full select-none object-cover"
         />
       </div>
-      <div className="basis-1/2 px-8 py-10 text-joanGreen-600 lg:p-20">
+      <div className="flex basis-1/2 flex-col justify-center px-8 py-10 text-joanGreen-600 lg:p-20">
         <dl className="flex flex-col space-y-10 lg:space-y-8">
-                    <EventInformationItem
+          <EventInformationItem
             name="Que dia?"
             action={{
               href: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com",
