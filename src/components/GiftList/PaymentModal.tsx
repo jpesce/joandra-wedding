@@ -169,8 +169,9 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
             items: cart.items.map((item) => {
               return {
                 title: item.name,
-                unit_price: giftList.find((gift) => gift.name === item.name)
-                  ?.price,
+                unit_price:
+                  item.price ||
+                  giftList.find((gift) => gift.name === item.name)?.price,
                 quantity: item.quantity,
               };
             }),
