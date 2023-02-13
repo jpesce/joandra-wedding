@@ -5,11 +5,11 @@ const ITEM_NAME = "Valor personalizado";
 
 const handleInputChange = (
   event: React.ChangeEvent<HTMLInputElement>,
-  setPayWhaYouWantValue: SetPayWhatYouWantValue
+  setPayWhatYouWantValue: SetPayWhatYouWantValue
 ): void => {
   const numbersInValue = event.target.value.replace(/\D/g, "");
   const integerValue = parseInt(numbersInValue) ? parseInt(numbersInValue) : 0;
-  setPayWhaYouWantValue(integerValue);
+  setPayWhatYouWantValue(integerValue);
 
   const stringValue = integerValue > 0 ? integerValue.toString() : "";
   event.target.value = `R$ ${stringValue}`;

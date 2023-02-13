@@ -3,10 +3,41 @@ import Image from "next/image";
 import catsHandshaking from "../../../public/cats-handshaking.jpg";
 import IconArrowRight from "../../../public/icon-arrow-right.react.svg";
 
+type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
+  label?: string;
+  options: Array<{ value: string; label: string }>;
+};
+const Select = ({
+  label,
+  options,
+  ...selectInputProps
+}: SelectProps): JSX.Element => {
+  return (
+    <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
+      <label
+        htmlFor={selectInputProps.id}
+        className="flex h-full shrink-0 items-center pl-4 pr-2 pt-[0.375rem] font-condensed uppercase tracking-widest"
+      >
+        {label}
+      </label>
+      <select
+        className="mr-4 w-full text-black focus:bg-joanGreen-50 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+        name="select"
+        {...selectInputProps}
+      >
+        {options.map((option, key) => (
+          <option key={key} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
 };
-
 const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
   return (
     <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
@@ -47,19 +78,30 @@ const TextArea = ({
   );
 };
 
-const ConfirmationMessage = (): JSX.Element => {
+type ConfirmationMessageProps = {
+  setRSVPState: React.Dispatch<React.SetStateAction<RSVPState>>;
+};
+const ConfirmationMessage = ({
+  setRSVPState,
+}: ConfirmationMessageProps): JSX.Element => {
   return (
-    <div className="flex h-full grow animate-fade-in flex-col items-center justify-center space-y-4 uppercase">
-      <p>Confirmação feita</p>
+    <div className="flex h-full h-80 w-full grow animate-fade-in flex-col items-center justify-center space-y-4 border border-joanGreen-600 p-6">
+      <p>Confirmação enviada com sucesso</p>
       <Image src={catsHandshaking} alt="Cats handshaking" width={200} />
-      <p>com sucesso</p>
+      <button
+        className="mt-4 inline-flex min-h-[2.5rem] select-none items-center justify-center rounded-full border border-joanGreen-600 px-5 uppercase text-joanGreen-600 transition hover:bg-joanGreen-600 hover:text-white"
+        onClick={() => setRSVPState("formOpen")}
+      >
+        ← &nbsp;Confirmar outra pessoa
+      </button>
     </div>
   );
 };
 
 type RSVPFormElements = HTMLFormControlsCollection & {
   name: HTMLInputElement;
-  numberOfPersons: HTMLInputElement;
+  phone: HTMLInputElement;
+  confirmation: HTMLSelectElement;
   message: HTMLTextAreaElement;
 };
 type HTMLRSVPFormElement = HTMLFormElement & {
@@ -67,7 +109,8 @@ type HTMLRSVPFormElement = HTMLFormElement & {
 };
 type FormData = {
   name: string;
-  "number-of-persons": string;
+  phone: string;
+  confirmation: string;
   message?: string;
 };
 type ZapierResponse = {
@@ -108,7 +151,8 @@ const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
 
     const formData = {
       name: event.currentTarget.elements.name.value,
-      "number-of-persons": event.currentTarget.elements.numberOfPersons.value,
+      phone: event.currentTarget.elements.phone.value,
+      confirmation: event.currentTarget.elements.confirmation.value,
       message: event.currentTarget.elements.message.value,
     };
 
@@ -131,20 +175,30 @@ const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
       action="https://hooks.zapier.com/hooks/catch/778207/b78vzbt/"
       method="post"
       onSubmit={handleSubmit}
+      className="w-full"
     >
       <div className="md:flex">
-        <div className="grow basis-1/2 md:-mr-[1px]">
+        <div className="grow basis-1/3 md:-mr-[1px]">
           <Input id="name" name="name" label="Quem é você?" required />
         </div>
-        <div className="-mt-[1px] grow basis-1/2 md:mt-0">
+        <div className="-mt-[1px] grow basis-1/3 md:mt-0 md:-mr-[1px]">
           <Input
-            id="numberOfPersons"
-            name="number-of-persons"
-            label="Vem em quantos?"
-            type="number"
-            min="1"
-            max="10"
+            id="phone"
+            name="phone"
+            label="Telefone"
             required
+            maxLength={18}
+          />
+        </div>
+        <div className="-mt-[1px] grow basis-1/3 md:mt-0">
+          <Select
+            id="confirmation"
+            name="confirmation"
+            label="Você vai?"
+            options={[
+              { value: "sim", label: "Com certeza!" },
+              { value: "nao", label: "Infelizmente não" },
+            ]}
           />
         </div>
       </div>
@@ -185,11 +239,17 @@ const RSVP = (): JSX.Element => {
   const [state, setState] = useState<RSVPState>("formOpen");
 
   return (
-    <div className="flex min-h-[33rem] flex-col space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:min-h-[32.625rem] lg:p-20">
-      <div className="text-center font-serif text-4xl">
-        Confirme sua presença
+    <div className="flex min-h-[33rem] flex-col items-center space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:min-h-[32.625rem] lg:p-20">
+      <div className="max-w-lg space-y-2 text-center">
+        <div className="font-serif text-4xl">Confirme sua presença</div>
+        <div>
+          Pra planejar tudo melhor, é muito importante pra gente saber quem vai
+          e quem não vai conseguir ir o mais cedo possível. Ah, cada confirmação
+          é individual, então se for mais de uma pessoa, confirme cada uma
+          separadamente.
+        </div>
       </div>
-      {state === "confirmed" && <ConfirmationMessage />}
+      {state === "confirmed" && <ConfirmationMessage setRSVPState={setState} />}
       {state === "formOpen" && <RSVPForm setRSVPState={setState} />}
     </div>
   );
