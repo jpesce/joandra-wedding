@@ -244,7 +244,7 @@ function RSVP(): JSX.Element {
           e quem não vai conseguir ir o mais cedo possível. Ah, cada confirmação
           é individual, então se for mais de uma pessoa, confirme cada uma
           separadamente. E claro, todos os nomes precisam estar na nossa lista,
-          não dê uma de engraçadinho!
+          não dê uma de engraçadinho 👀
         </div>
       </div>
       {state === "confirmed" && <ConfirmationMessage setRSVPState={setState} />}
