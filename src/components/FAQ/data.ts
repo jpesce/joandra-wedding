@@ -15,6 +15,22 @@ const questionList: QuestionList = [
       "Não, e não é não mesmo. Adoraríamos ter outros amigos especiais nessa celebração, mas tivemos que seguir um limite de ocupação do espaço. Por isso fizemos uma seleta curadoria de pessoas e cada um de vocês é fundamental pra gente.",
   },
   {
+    question: "Como é o lugar da festa?",
+    answer:
+      "Escolhemos um lugar mais informal pra termos uma festa leve e divertida (sem muitos protocolos). É um espaço com árvores, grama e até um tanquinho de areia (que loucura).",
+  },
+   {
+    question: "Tem estacionamento lá?",
+    answer:
+      "Não, mas normalmente a rua tem muito espaço para estacionar. Se for beber melhor ir de Uber ou organizar uma van pra galera. — Se for dirigir, não beba",
+  },
+  {
+    question:
+      "Qual é o traje da festa? Preciso ir de salto, gravata, vestido longo?",
+    answer:
+      "Esse é um dia único e muito especial, queremos todo mundo lindo do seu jeito! Então não precisa usar salto, gravata ou vestido longo, mas venha radiante pois esse evento será fotografado para a posteridade.",
+  },
+  {
     question: "Vai ter chinelo?",
     answer:
       "Não, a gente recomenda que você vá com um sapato pra curtir a festa toda! Mas pode levar seu chinelo para trocar quando quiser se achar melhor ;)",
@@ -26,20 +42,9 @@ const questionList: QuestionList = [
   },
   {
     question:
-      "Qual é o traje da festa? Preciso ir de salto, gravata, vestido longo?",
-    answer:
-      "Esse é um dia único e muito especial, queremos todo mundo lindo do seu jeito! Então não precisa usar salto, gravata ou vestido longo, mas venha radiante pois esse evento será fotografado para a posteridade.",
-  },
-  {
-    question:
       "Como vai ser a comida lá? É verdade que só vai ter comida natureba?",
     answer:
       "Vamos ter uma mesa de antepastos no melhor estilo cada um por si, pra agradar todos os paladares. E pro jantar tem opções vegetarianas/veganas e com carne, dá pra ver as opções de prato lá em cima.",
-  },
-  {
-    question: "Posso fazer um Pix direto pra vocês como presente?",
-    answer:
-      "Lógico, nossa chave é o CPF. Do João é 089.745.156-28 e da Chandra é 115.632.206-52. Nos mande uma mensagem para sabermos que estamos recebendo esse presente de você.",
   },
   {
     question: "Posso levar minha própria bebida?",
@@ -47,9 +52,9 @@ const questionList: QuestionList = [
       "A gente pensou em muitas opções, mas se nenhuma delas te apetecer, pode sim levar sua bebida. Só não prometemos que terá um copo ou taça especial para ela.",
   },
   {
-    question: "Tem estacionamento lá?",
+    question: "Posso fazer um Pix direto pra vocês como presente?",
     answer:
-      "Não, mas normalmente a rua tem muito espaço para estacionar. Se for beber melhor ir de Uber ou organizar uma van pra galera. — Se for dirigir, não beba",
+      "Lógico, nossa chave é o CPF. Do João é 089.745.156-28 e da Chandra é 115.632.206-52. Nos mande uma mensagem para sabermos que estamos recebendo esse presente de você.",
   },
   {
     question: "Tem indicações de hotel, salão, etc?",
