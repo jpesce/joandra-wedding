@@ -5,6 +5,11 @@ const questionList: QuestionList = [
       "Vamos ter um momento no início para brindar, ficaríamos muito felizes se todos vocês estivessem lá nessa hora. Então se organize para chegar 14h30 e se aclimatar logo cedo.",
   },
   {
+    question: "A festa termina que hora?",
+    answer:
+      "Como a festa será em uma área residencial, existe um limite de horário. Então se precisar se programar, nossa hora limite é 22h. Por isso chegue cedo!",
+  },
+  {
     question: "Posso levar alguém que não está na lista? Por favorzinho?",
     answer:
       "Não, e não é não mesmo. Adoraríamos ter outros amigos especiais nessa celebração, mas tivemos que seguir um limite de ocupação do espaço. Por isso fizemos uma seleta curadoria de pessoas e cada um de vocês é fundamental pra gente.",
@@ -40,11 +45,6 @@ const questionList: QuestionList = [
     question: "Posso levar minha própria bebida?",
     answer:
       "A gente pensou em muitas opções, mas se nenhuma delas te apetecer, pode sim levar sua bebida. Só não prometemos que terá um copo ou taça especial para ela.",
-  },
-  {
-    question: "A festa termina que hora?",
-    answer:
-      "Como a festa será em uma área residencial, existe um limite de horário. Então se precisar se programar, nossa hora limite é 22h. Por isso chegue cedo!",
   },
   {
     question: "Tem estacionamento lá?",
