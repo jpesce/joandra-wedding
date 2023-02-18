@@ -12,6 +12,7 @@ const serif = localFont({
     },
   ],
   variable: "--font-serif",
+  display: "swap",
 });
 
 const condensed = localFont({
@@ -22,6 +23,7 @@ const condensed = localFont({
     },
   ],
   variable: "--font-condensed",
+  display: "swap",
 });
 
 export { serif, condensed };
