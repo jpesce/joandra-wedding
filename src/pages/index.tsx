@@ -11,6 +11,7 @@ import { CartProvider } from "../components/GiftList/CartContext";
 import GiftList from "../components/GiftList";
 import RSVP from "../components/RSVP";
 import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
 
 const Index: NextPage = () => {
   const path = useRouter().pathname;
@@ -75,6 +76,7 @@ const Index: NextPage = () => {
       <section id="perguntas-frequentes">
         <FAQ />
       </section>
+      <Footer />
     </>
   );
 };
