@@ -2,19 +2,29 @@
 
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
 [ -z "$STAGED_FILES" ] && exit 0
+NEEDS_REVISION=0
 
 # Type check
 echo "Type checking..."
 yarn --silent tsc --pretty false
 TSC_EXIT_CODE=$?
 
-# Format all staged files ignoring unknown extensions
-echo "Formatting..."
-echo "$STAGED_FILES" | xargs yarn --silent prettier --ignore-unknown --no-color --write --loglevel=warn
-PRETTIER_EXIT_CODE=$?
+# Check if files need prettier formatting
+printf "Checking if prettier needs formatting... "
+echo "$STAGED_FILES" | xargs yarn --silent prettier --ignore-unknown --no-color --check --loglevel=error
+PRETTIER_CHECK_EXIT_CODE=$?
+if [[ $PRETTIER_CHECK_EXIT_CODE -eq 1 ]]; then
+  # Format all staged files ignoring unknown extensions
+  echo "yes! Formatting..."
+  echo "$STAGED_FILES" | xargs yarn --silent prettier --ignore-unknown --no-color --write --loglevel=warn
+  PRETTIER_EXIT_CODE=$?
+  NEEDS_REVISION=1
+else
+  echo "everything looks fine!"
+fi
 
 # Get staged files allowed by tsconfig/eslint
-# Ideally eslint would ignore unprocessable file extensions
+# Ideally eslint would just ignore unprocessable file extensions like prettier
 TSCONFIG_STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR '*.tsx' '*.ts' '*.cjs' '*.mjs' '*.json' | sed 's| |\\ |g')
 
 # Lint
@@ -23,8 +33,10 @@ echo "$TSCONFIG_STAGED_FILES" | xargs yarn --silent eslint --no-color
 ESLINT_EXIT_CODE=$?
 
 # Return error exit code if any commands had errors
-[[ $TSC_EXIT_CODE -eq 1 || $PRETTIER_EXIT_CODE -eq 1 || $ESLINT_EXIT_CODE -eq 1 ]] && exit 1
+[[ $TSC_EXIT_CODE -eq 1 || $PRETTIER_EXIT_CODE -eq 1 || $ESLINT_EXIT_CODE -eq 1 ]] && echo "Pipeline had errors, correct them and commit again" && exit 1
 
-# Add back the modified files to staging
-echo "$STAGED_FILES" | xargs git add
+# Return error exit code if prettier changed the files so the user can re-add
+# them accordingly
+[[ $NEEDS_REVISION -eq 1 ]] && echo "Prettier changed files. Add desired files/lines again" && exit 1
+
 exit 0
