@@ -15,7 +15,7 @@ const handleInputChange = (
   event.target.value = `R$ ${stringValue}`;
 };
 
-const PayWhatYouWant = (): JSX.Element => {
+function PayWhatYouWant(): JSX.Element {
   const [payWhatYouWantValue, setPayWhatYouWantValue] = useState(0);
   const { updateCart } = useCart();
 
@@ -59,6 +59,6 @@ const PayWhatYouWant = (): JSX.Element => {
       </button>
     </div>
   );
-};
+}
 
 export default PayWhatYouWant;

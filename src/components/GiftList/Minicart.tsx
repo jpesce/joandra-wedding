@@ -12,20 +12,20 @@ import PaymentModal from "./PaymentModal";
 type MinicartQuantityBadgeProps = {
   itemQuantity: number;
 };
-const MinicartQuantityBadge = ({
+function MinicartQuantityBadge({
   itemQuantity,
-}: MinicartQuantityBadgeProps): JSX.Element => {
+}: MinicartQuantityBadgeProps): JSX.Element {
   return (
     <div className="absolute top-[-0.5rem] right-0 flex h-[22px] min-w-[22px] select-none items-center justify-center rounded-full bg-black px-[0.4rem] text-xs text-white">
       {itemQuantity}
     </div>
   );
-};
+}
 
 type MinicartItemProps = {
   cartItem: CartItem;
 };
-const MinicartItem = ({ cartItem }: MinicartItemProps) => {
+function MinicartItem({ cartItem }: MinicartItemProps) {
   const { updateCart, itemTotalAmount } = useCart();
 
   return (
@@ -66,18 +66,18 @@ const MinicartItem = ({ cartItem }: MinicartItemProps) => {
       </div>
     </div>
   );
-};
+}
 
 type MinicartItemListProps = {
   setPaymentOpen: SetPaymentOpen;
   setItemListOpen: React.Dispatch<React.SetStateAction<boolean>>;
   itemListOpen: boolean;
 };
-const MinicartItemList = ({
+function MinicartItemList({
   setPaymentOpen,
   setItemListOpen,
   itemListOpen,
-}: MinicartItemListProps): JSX.Element => {
+}: MinicartItemListProps): JSX.Element {
   const { cart, cartTotalAmount } = useCart();
 
   useEffect(() => {
@@ -134,14 +134,14 @@ const MinicartItemList = ({
       )}
     </>
   );
-};
+}
 
 type MinicartFloatingButtonProps = {
   itemQuantity: number;
 };
-const MinicartFloatingButton = ({
+function MinicartFloatingButton({
   itemQuantity,
-}: MinicartFloatingButtonProps): JSX.Element => {
+}: MinicartFloatingButtonProps): JSX.Element {
   return (
     <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-joanGreen-600 bg-white text-joanGreen-600 shadow-xl">
       {itemQuantity > 0 && (
@@ -150,9 +150,9 @@ const MinicartFloatingButton = ({
       <IconGift className="h-[33px]" />
     </div>
   );
-};
+}
 
-const Minicart = (): JSX.Element => {
+function Minicart(): JSX.Element {
   const [itemListOpen, setItemListOpen] = useState(false);
   const [paymentOpen, setPaymentOpen] = useState(false);
 
@@ -195,6 +195,6 @@ const Minicart = (): JSX.Element => {
       </div>
     </>
   );
-};
+}
 
 export default Minicart;

@@ -80,7 +80,7 @@ type CartProviderProps = {
   cartFromServer?: Cart;
   children: React.ReactNode;
 };
-const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
+function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, updateCart] = useReducer<CartReducer>(cartReducer, {
     items: [],
   });
@@ -137,7 +137,7 @@ const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
       {children}
     </CartContext.Provider>
   );
-};
+}
 
 const useCart = () => {
   const context = useContext(CartContext);

@@ -1,6 +1,6 @@
 import Signatures from "../../../public/signatures.react.svg";
 
-const Intro = (): JSX.Element => {
+function Intro(): JSX.Element {
   return (
     <div className="flex justify-center border-t border-joanGreen-600 py-10 px-8 uppercase text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white lg:py-20">
       <div className="max-w-[36rem] space-y-6">
@@ -21,6 +21,6 @@ const Intro = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default Intro;

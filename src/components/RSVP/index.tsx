@@ -7,11 +7,11 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   label?: string;
   options: Array<{ value: string; label: string }>;
 };
-const Select = ({
+function Select({
   label,
   options,
   ...selectInputProps
-}: SelectProps): JSX.Element => {
+}: SelectProps): JSX.Element {
   return (
     <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
       <label
@@ -33,12 +33,12 @@ const Select = ({
       </select>
     </div>
   );
-};
+}
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
 };
-const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
+function Input({ label, ...htmlInputProps }: InputProps): JSX.Element {
   return (
     <div className="relative inline-block flex h-full h-[3rem] w-full border border-joanGreen-600 focus-within:bg-joanGreen-50">
       <label
@@ -53,15 +53,12 @@ const Input = ({ label, ...htmlInputProps }: InputProps): JSX.Element => {
       ></input>
     </div>
   );
-};
+}
 
 type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
 };
-const TextArea = ({
-  label,
-  ...htmlTextAreaProps
-}: TextAreaProps): JSX.Element => {
+function TextArea({ label, ...htmlTextAreaProps }: TextAreaProps): JSX.Element {
   return (
     <div className="relative inline-block flex h-full w-full flex-col border border-joanGreen-600 focus-within:bg-joanGreen-50">
       <label
@@ -76,14 +73,14 @@ const TextArea = ({
       ></textarea>
     </div>
   );
-};
+}
 
 type ConfirmationMessageProps = {
   setRSVPState: React.Dispatch<React.SetStateAction<RSVPState>>;
 };
-const ConfirmationMessage = ({
+function ConfirmationMessage({
   setRSVPState,
-}: ConfirmationMessageProps): JSX.Element => {
+}: ConfirmationMessageProps): JSX.Element {
   return (
     <div className="flex h-full h-80 w-full grow animate-fade-in flex-col items-center justify-center space-y-4 border border-joanGreen-600 p-6">
       <p>Confirmação enviada com sucesso</p>
@@ -96,7 +93,7 @@ const ConfirmationMessage = ({
       </button>
     </div>
   );
-};
+}
 
 type RSVPFormElements = HTMLFormControlsCollection & {
   name: HTMLInputElement;
@@ -119,7 +116,7 @@ type ZapierResponse = {
 type RSVPFormProps = {
   setRSVPState: React.Dispatch<React.SetStateAction<RSVPState>>;
 };
-const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
+function RSVPForm({ setRSVPState }: RSVPFormProps): JSX.Element {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const submitForm = async (
@@ -232,10 +229,10 @@ const RSVPForm = ({ setRSVPState }: RSVPFormProps): JSX.Element => {
       )}
     </form>
   );
-};
+}
 
 type RSVPState = "formOpen" | "confirmed";
-const RSVP = (): JSX.Element => {
+function RSVP(): JSX.Element {
   const [state, setState] = useState<RSVPState>("formOpen");
 
   return (
@@ -253,6 +250,6 @@ const RSVP = (): JSX.Element => {
       {state === "formOpen" && <RSVPForm setRSVPState={setState} />}
     </div>
   );
-};
+}
 
 export default RSVP;

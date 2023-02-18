@@ -5,7 +5,7 @@ type QuestionProps = {
   question: string;
   answer: string;
 };
-const Question = ({ question, answer }: QuestionProps): JSX.Element => {
+function Question({ question, answer }: QuestionProps): JSX.Element {
   return (
     <div className="border-t border-joanGreen-600">
       <details className="group">
@@ -17,9 +17,9 @@ const Question = ({ question, answer }: QuestionProps): JSX.Element => {
       </details>
     </div>
   );
-};
+}
 
-const FAQ = (): JSX.Element => {
+function FAQ(): JSX.Element {
   return (
     <div className="space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:p-20">
       <div className="text-center font-serif text-4xl">
@@ -36,6 +36,6 @@ const FAQ = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default FAQ;

@@ -10,11 +10,11 @@ type EventInformationItemProps = {
     className?: string;
   };
 };
-const EventInformationItem = ({
+function EventInformationItem({
   name,
   children,
   action,
-}: EventInformationItemProps): JSX.Element => {
+}: EventInformationItemProps): JSX.Element {
   return (
     <div className="space-y-2">
       <dt className="font-condensed text-base uppercase tracking-widest">
@@ -38,9 +38,9 @@ const EventInformationItem = ({
       </dd>
     </div>
   );
-};
+}
 
-const EventDetails = (): JSX.Element => {
+function EventDetails(): JSX.Element {
   return (
     <div className="flex flex-col selection:bg-joanGreen-600 selection:text-white lg:flex-row">
       <div className="relative order-1 basis-1/2 border-t border-joanGreen-600 lg:order-none lg:border-r">
@@ -80,6 +80,6 @@ const EventDetails = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default EventDetails;

@@ -4,7 +4,7 @@ import logo from "../../../public/chandra-e-joao.svg";
 
 type Background = "dark" | "light";
 
-const Navigation = (): JSX.Element => {
+function Navigation(): JSX.Element {
   const [background, setBackground] = useState<Background>("dark");
   const [animate, setAnimate] = useState(true);
 
@@ -74,6 +74,6 @@ const Navigation = (): JSX.Element => {
       </nav>
     </>
   );
-};
+}
 
 export default Navigation;

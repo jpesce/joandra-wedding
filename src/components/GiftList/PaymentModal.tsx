@@ -7,14 +7,14 @@ import { useCart } from "./CartContext";
 
 import giftList from "./data";
 
-const Loading = (): JSX.Element => {
+function Loading(): JSX.Element {
   return (
     <div className="flex h-full w-full items-center justify-center md:h-[19.25rem] md:w-[42.125rem]">
       <div className="absolute h-10 w-10 animate-ping rounded-full bg-joanGreen-600"></div>
       <div className="h-10 w-10 rounded-full bg-joanGreen-600"></div>
     </div>
   );
-};
+}
 
 type PaymentInfoProps = {
   pixQRCode: { payload: string; base64Image: string };
@@ -140,7 +140,7 @@ type PaymentLinkCache = {
 type PaymentModalProps = {
   setPaymentOpen: SetPaymentOpen;
 };
-const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
+function PaymentModal({ setPaymentOpen }: PaymentModalProps): JSX.Element {
   const [pixQRCode, setPixQRCode] = useState({ payload: "", base64Image: "" });
   const [paymentLink, setPaymentLink] = useState("");
   const [loading, setLoading] = useState(true);
@@ -214,6 +214,6 @@ const PaymentModal = ({ setPaymentOpen }: PaymentModalProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default PaymentModal;

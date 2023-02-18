@@ -5,7 +5,7 @@ type HeroProps = {
     href: string;
   }[];
 };
-const Hero = ({ text, actions }: HeroProps): JSX.Element => {
+function Hero({ text, actions }: HeroProps): JSX.Element {
   return (
     <div
       id="hero"
@@ -27,6 +27,6 @@ const Hero = ({ text, actions }: HeroProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default Hero;

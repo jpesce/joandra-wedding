@@ -11,7 +11,7 @@ type GiftProps = {
   price: number;
   image: string;
 };
-const Gift = ({ name, price, image }: GiftProps): JSX.Element => {
+function Gift({ name, price, image }: GiftProps): JSX.Element {
   const { updateCart } = useCart();
 
   return (
@@ -45,9 +45,9 @@ const Gift = ({ name, price, image }: GiftProps): JSX.Element => {
       </button>
     </div>
   );
-};
+}
 
-const GiftList = (): JSX.Element => {
+function GiftList(): JSX.Element {
   return (
     <>
       <Minicart />
@@ -67,6 +67,6 @@ const GiftList = (): JSX.Element => {
       </div>
     </>
   );
-};
+}
 
 export default GiftList;
