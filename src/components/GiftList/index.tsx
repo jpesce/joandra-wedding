@@ -52,7 +52,7 @@ function GiftList(): JSX.Element {
     <>
       <Minicart />
       <div className="space-y-16 border-t border-joanGreen-600 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:px-8 lg:p-20">
-        <div className="m-auto max-w-lg space-y-2 text-center">
+        <div className="m-auto max-w-2xl space-y-2 text-center">
           <div className="font-serif text-4xl">Dê seu presente</div>
           <div>
             Clique para selecionar o(s) presente(s) que você quer nos dar. Ao

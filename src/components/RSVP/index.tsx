@@ -237,7 +237,7 @@ function RSVP(): JSX.Element {
 
   return (
     <div className="flex min-h-[33rem] flex-col items-center space-y-16 border-t border-joanGreen-600 px-8 py-10 text-joanGreen-600 selection:bg-joanGreen-600 selection:text-white md:min-h-[32.625rem] lg:p-20">
-      <div className="max-w-lg space-y-2 text-center">
+      <div className="max-w-2xl space-y-2 text-center">
         <div className="font-serif text-4xl">Confirme sua presença</div>
         <div>
           Pra planejar tudo melhor, é muito importante pra gente saber quem vai
