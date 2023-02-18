@@ -55,7 +55,7 @@ function EventDetails(): JSX.Element {
           <EventInformationItem
             name="Que dia?"
             action={{
-              href: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMganBlc2NlQG0&tmsrc=jpesce%40gmail.com",
+              href: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MzFkaXA4MnFqZHFmOGgwNmxxM2J0ZmswOGMgMmZkNDJkNzFiMTllNWIwYTVkM2NjZDI5ZTgzYTZmMTEwZDA1NTA4NjcxYWExNWZlOGQ1N2RlMjJhMmEwNGZmYUBn&tmsrc=2fd42d71b19e5b0a5d3ccd29e83a6f110d05508671aa15fe8d57de22a2a04ffa%40group.calendar.google.com",
               label: "Google Calendar ＋",
               className: "hidden lg:inline",
             }}
