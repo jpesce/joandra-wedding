@@ -203,7 +203,7 @@ function RSVPForm({ setRSVPState }: RSVPFormProps): JSX.Element {
         <TextArea
           id="message"
           name="message"
-          label="O que é... a vida?"
+          label="Deixe seu recado carinhoso pra gente"
           rows={4}
         />
       </div>
