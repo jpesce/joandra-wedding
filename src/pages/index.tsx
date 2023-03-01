@@ -37,7 +37,7 @@ const Index: NextPage = () => {
         />
         <meta
           property="og:image"
-          content="https://www.chandraejoao.com/og-image.jpg"
+          content="https://www.chandraejoao.com/og-image-v2.jpg"
         />
       </Head>
 
