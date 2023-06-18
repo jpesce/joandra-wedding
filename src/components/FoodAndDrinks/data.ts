@@ -2,12 +2,16 @@ const menu = [
   {
     name: "Comidas",
     items: [
-      "Pães",
-      "Frutas",
-      "Queijos",
-      "Embutidos",
-      "Muitos outros antepastos",
-      "Jantar especial",
+      "Pães artesanais",
+      "Queijos mineiros",
+      "Charcutaria",
+      "Mini sanduíches",
+      "Quiches e tortas",
+      "Ceviche de peixe e camarões",
+      "Raclete de queijo canastra",
+      "Arroz de tomates caramelizados",
+      "Arroz de polvo com açafrão",
+      "Arroz de costela com saladinha de couve",
     ],
   },
   {
