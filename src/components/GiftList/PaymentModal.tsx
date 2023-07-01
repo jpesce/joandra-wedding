@@ -124,7 +124,7 @@ const getPixQRCode: PixQRCode = async (amount) => {
     key: "08974515628",
     name: "João Paulo Barros Cotta Pesce",
     city: "BELO HORIZONTE",
-    message: "🎁 Presente de casamento Chandra & João",
+    message: "Presente de casamento Chandra & João",
     value: amount,
   });
   const base64Image = await pixQRCode.base64();
