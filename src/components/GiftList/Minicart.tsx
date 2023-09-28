@@ -187,7 +187,7 @@ function Minicart(): JSX.Element {
               <MinicartFloatingButton itemQuantity={itemQuantity} />
             </button>
           ) : (
-            <a href="#lista-de-presentes">
+            <a href="#lista-de-presentes" aria-label="Lista de presentes">
               <MinicartFloatingButton itemQuantity={itemQuantity} />
             </a>
           )}

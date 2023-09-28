@@ -33,10 +33,16 @@ function PayWhatYouWant(): JSX.Element {
   return (
     <div className="mr-[-1px] mt-[-1px] flex flex-col place-items-center border border-joanGreen-600  bg-joanGreen-50 p-4 text-sm md:h-auto">
       <div className="flex grow flex-col justify-center py-16 md:py-0">
-        <p className="text-center font-serif text-3xl">Dê o seu valor</p>
+        <label
+          htmlFor="pay-what-you-want"
+          className="text-center font-serif text-3xl"
+        >
+          Dê o seu valor
+        </label>
         <p className="text-center">Digite o valor do seu presente</p>
         <div>
           <input
+            id="pay-what-you-want"
             defaultValue="R$ "
             maxLength={8}
             className="m-auto mt-4 flex w-full items-center rounded-full bg-white py-[0.75rem] text-center text-xl"
