@@ -30,7 +30,7 @@ https://github.com/jpesce/joandra-wedding/assets/1228352/5ee76565-de4d-46c5-b26d
 ## Lighthouse score
 <img width="471" alt="lighthouse-score-chandraejoao com" src="https://github.com/jpesce/joandra-wedding/assets/1228352/59568f10-a6c4-4aeb-91c2-18606594960b">
 
-Accessibility is not 100 because the colors don't have enough contrast (the constrast ratio is 2.5:1, while the [requirement for level AA is 4.5:1 and for AAA is 7:1](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html). This could be remedied with a new color palette when the user has `[prefers-contrast](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-contrast)` set to `more`.
+Accessibility is not 100 because the colors don't have enough contrast (the constrast ratio is 2.5:1, while the [requirement for level AA is 4.5:1 and for AAA is 7:1](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html). This could be remedied with a new color palette when the user has [`prefers-contrast`](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-contrast) set to `more`.
 
 ## How to start developing
 ```
