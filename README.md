@@ -2,7 +2,7 @@
   <img width="120" style="margin-bottom: 0;" src="https://github.com/jpesce/great-latex-songbook/assets/1228352/8e1f0915-bba9-4606-b1a9-6b59c9bc5b05" alt="Chandra e João's wedding page"/>
   <h1 align="center" style="margin-top: 0"><b>Chandra & João's wedding page</b></h1>
   <p>
-    A fun side project to design and develop a simple, but fully-featured single-page wedding website from scratch.<br/><a href="https://chandraejoao.com/" target="_blank">chandraejoao.com</a>
+    A fun side project to design and develop a simple, yet fully-featured, single-page wedding website from scratch.<br/><a href="https://chandraejoao.com/" target="_blank">chandraejoao.com</a>
   </p>
 </div>
 
@@ -26,6 +26,11 @@ https://github.com/jpesce/joandra-wedding/assets/1228352/5ee76565-de4d-46c5-b26d
 - [Environment variables](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables) for storing secrets and creating distinct behaviors in development and production
 - React's basic concepts: [context](https://react.dev/learn/passing-data-deeply-with-context), [reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer), [memo](https://react.dev/reference/react/memo), [state](https://react.dev/learn/state-a-components-memory), [effect](https://react.dev/learn/synchronizing-with-effects) _etc_
 - [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) for type checking, linting and formatting before every push
+
+## Lighthouse score
+<img width="471" alt="lighthouse-score-chandraejoao com" src="https://github.com/jpesce/joandra-wedding/assets/1228352/59568f10-a6c4-4aeb-91c2-18606594960b">
+
+Accessibility is not 100 because the colors don't have enough contrast (the constrast ratio is 2.5:1, while the [requirement for level AA is 4.5:1 and for AAA is 7:1](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html). This could be remedied with a new color palette when the user has `[prefers-contrast](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-contrast)` set to `more`.
 
 ## How to start developing
 ```
