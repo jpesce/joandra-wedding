@@ -47,7 +47,9 @@ function EventDetails(): JSX.Element {
         <Image
           src={eventPhoto}
           alt="Melvin Sokolsky - Sidekick, Harper's Bazaar"
-          className="h-full w-full select-none object-cover"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          style={{ width: "100%", height: "100%" }}
+          className="select-none object-cover"
         />
       </div>
       <div className="flex basis-1/2 flex-col justify-center px-8 py-10 text-joanGreen-600 lg:p-20">

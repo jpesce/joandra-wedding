@@ -19,13 +19,18 @@ function Intro(): JSX.Element {
           chave de ouro. Se vista pra esse dia único e venha pronto pra
           aproveitar muito do nosso lado!
         </p>
-        <Image
-          className="m-auto mt-12"
-          src={chandraEJoao}
-          alt="Chandra e João, por Guilherme Garofalo"
-          title="Chandra e João, por Guilherme Garofalo"
-          width={432}
-        />
+        <div className="relative m-auto mt-12 max-w-[432px]">
+          <Image
+            src={chandraEJoao}
+            alt="Chandra e João, por Guilherme Garofalo"
+            title="Chandra e João, por Guilherme Garofalo"
+            sizes="(max-width: 496px) 100vw - 64px, 432px"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </div>
         <Signatures className="m-auto mt-6 h-12 max-w-full text-black lg:h-14" />
       </div>
     </div>
