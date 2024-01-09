@@ -26,6 +26,7 @@ https://github.com/jpesce/joandra-wedding/assets/1228352/5ee76565-de4d-46c5-b26d
 - [Environment variables](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables) to store secrets and create different behaviors in development and production
 - React's basic concepts: [context](https://react.dev/learn/passing-data-deeply-with-context), [reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer), [memo](https://react.dev/reference/react/memo), [state](https://react.dev/learn/state-a-components-memory), [effect](https://react.dev/learn/synchronizing-with-effects) _etc_
 - [Git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) for type checking, linting and formatting before every push
+- [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for [commit messages](https://github.com/jpesce/joandra-wedding/commits/main/).
 
 ## Lighthouse score
 <img width="471" alt="lighthouse-score-chandraejoao com" src="https://github.com/jpesce/joandra-wedding/assets/1228352/59568f10-a6c4-4aeb-91c2-18606594960b">
