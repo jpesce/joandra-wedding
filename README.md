@@ -2,7 +2,7 @@
   <img width="120" style="margin-bottom: 0;" src="https://github.com/jpesce/great-latex-songbook/assets/1228352/8e1f0915-bba9-4606-b1a9-6b59c9bc5b05" alt="Chandra e João's wedding page"/>
   <h1 align="center" style="margin-top: 0"><b>Chandra & João's wedding page</b></h1>
   <p>
-    A fun side project to design and develop a simple, yet fully-featured, single-page wedding website from scratch.<br/><br/>UPDATE (January, 2024): we stopped paying for a custom domain. However, the website is still accessible at<br/><a href="https://joandra-wedding.vercel.app/" target="_blank">https://joandra-wedding.vercel.app/</a>
+    A fun side project to design and develop a simple, yet fully-featured, single-page wedding website from scratch.<br/><br/>UPDATE (January, 2024): we stopped paying for a custom domain. However, the website is still available at<br/><a href="https://joandra-wedding.vercel.app/" target="_blank">https://joandra-wedding.vercel.app/</a>
   </p>
 </div>
 
